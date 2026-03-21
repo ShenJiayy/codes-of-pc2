@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
-int main() {
+#define int long long
+signed main() {
     int m;
     cin >> m;
     // 构造a_i|a_j
