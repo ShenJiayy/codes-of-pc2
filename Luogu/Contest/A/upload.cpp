@@ -1,8 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define int long long
-const int N = 1e5;
-int a[N + 5];
 signed main() {
     int m;
     cin >> m;
@@ -16,7 +14,7 @@ signed main() {
     //     cout << "2\n1 2";
     //     return 0;
     // }
-    int l = 1, r = N, n;
+    int l = 1, r = 1e5, n;
     while (l <= r) {
         int mid = l + r >> 1;
         // 也就是求m=n*(n-1)/2的最接近的最小值
@@ -24,8 +22,11 @@ signed main() {
             n = mid, l = mid + 1;
         else r = mid - 1;
     }
-    cout << n << endl;
-    for (int i = 1; i <= n; i ++)
+    int rm = m - n * (n - 1) / 2;
+    cout << n + rm << endl;
+    for (int i = 1; i <= 2 * rm; i ++)
+        cout << 4 << " ";
+    for (int i = 1; i <= n - rm; i ++)
         cout << 2 << " ";
     return 0;
 }
