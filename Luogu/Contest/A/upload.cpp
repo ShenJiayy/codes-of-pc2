@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define int long long
-const int N = 45000;
+const int N = 1e5;
 int a[N + 5];
 signed main() {
     int m;
@@ -12,10 +12,10 @@ signed main() {
         cout << "2\n99 37";
         return 0;
     }
-    else if (m == 1) {
-        cout << "2\n1 2";
-        return 0;
-    }
+    // else if (m == 1) {
+    //     cout << "2\n1 2";
+    //     return 0;
+    // }
     int l = 1, r = m, n;
     while (l <= r) {
         int mid = l + r >> 1;
@@ -27,6 +27,7 @@ signed main() {
     a[1] = 1;
     for (int i = 2; i <= n; i ++)
         a[i] = a[i - 1] * 2;
+    cout << n << endl;
     for (int i = 1; i <= n; i ++)
         cout << a[i] << " ";
     return 0;
