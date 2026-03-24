@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define int long long
+typedef long long ll;
 const int N = 5e5;
 struct Node {
     int nxt, val, id, cnt;
@@ -13,19 +13,19 @@ bool operator <(Node x, Node y) {
     return x.cnt < y.cnt;
 }
 int Solution1(int n, priority_queue<Node> heap) {
-    int ans = 0;
+    ll ans = 0;
     for (int i = n / 2; i >= 1; i --)
-        ans += (n / 2 - i + 1) * a[i].val;
+        ans += 1ll * (n / 2 - i + 1) * a[i].val;
     printf("%lld\n", ans);
     for (int i = n  / 2; i >= 1; i --) {
         Node t = heap.top();
         if (a[i].nxt != t.id) {
-            printf("%lld %lld\n", a[i].id, t.id);
+            printf("%d %d\n", a[i].id, t.id);
             heap.pop();
         }
         else {
             heap.pop();
-            printf("%lld %lld\n", a[i].id, t.id);
+            printf("%d %d\n", a[i].id, t.id);
             heap.pop();
             heap.push(t);
         }
@@ -43,30 +43,30 @@ int Solution2(int n, priority_queue<Node> heap) {
             if (t.nxt != a[pos].id)
                 break;
     }
-    int ans = 0;
+    ll ans = 0;
     ans += min(a[pos].val, t.val);
     for (int i = n / 2 - 1; i >= 1; i --)
-        ans += (n / 2 + 1 - i) * a[i].val;
+        ans += 1ll * (n / 2 + 1 - i) * a[i].val;
     printf("%lld\n", ans);
-    printf("%lld %lld", t.id, a[pos].id);
+    printf("%d %d", t.id, a[pos].id);
     heap.pop();
     for (int i = n / 2 - 1, j = n / 2; i >= 1 && j <= n; i --, j ++) {
         if (j == pos || a[j].val == t.val) j ++;
-        printf("%lld %lld\n", a[i].id, a[j].id);
+        printf("%d %d\n", a[i].id, a[j].id);
     }
     return 0;
 }
-signed main() {
+int main() {
 	int n;
-    scanf("%lld", &n);
+    scanf("%d", &n);
     for (int i = 1; i <= n; i ++)
-        scanf("%lld", &a[i].val);
+        scanf("%d", &a[i].val);
     for (int i = 1; i <= n; i ++)
-        scanf("%lld", &a[i].nxt);
+        scanf("%d", &a[i].nxt);
     if (n == 2) {
-        if (a[1].nxt != a[2].nxt && a[2].nxt != -1)
-            printf("%lld\n1 2", min(a[1].val, a[2].val));
-        else puts("-1");
+        if (a[1].nxt == -1 && a[2].nxt == -1)
+            printf("%d\n1 2", min(a[1].val, a[2].val));
+        else printf("-1");
         return 0;
     }
     for (int i = 1; i <= n; i ++)
@@ -80,12 +80,12 @@ signed main() {
     for (int i = n / 2 + 1; i <= n - 1; i ++)
         heap.push(a[i]);
     if (heap.top().nxt != -1 && heap.top().cnt == n - 2) {
-        puts("-1");
+        printf("-1");
         return 0;
     }
     heap.push(a[n]);
     if (heap.top().cnt == n - 1) {
-        puts("-1");
+        printf("-1");
         return 0;
     }
     bool flg = 0;
