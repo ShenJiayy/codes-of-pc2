@@ -9,7 +9,7 @@ bool cmp(Node x, Node y) {
     return x.val < y.val;
 }
 bool operator <(Node x, Node y) {
-    if (x.cnt == y.cnt) return x.id > y.id;
+    if (x.cnt == y.cnt) return x.val > y.val;
     return x.cnt < y.cnt;
 }
 int Solution1(int n, priority_queue<Node> heap) {
