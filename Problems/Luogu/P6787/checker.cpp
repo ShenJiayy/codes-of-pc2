@@ -39,4 +39,3 @@ int main(int argc,char* argv[]){
 	else quitf(_ok,"The answer and the project are correct, congratulations!.");
 	return 0;
 }
-
