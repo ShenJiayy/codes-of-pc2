@@ -23,6 +23,14 @@ int main(int argc, char** argv){
 			}
 		string ansf = ans.readString();
 		string outf = ouf.readString();
+		// if (ansf != "YES" && ansf != "NO") {
+		// 	printf("Error: Answer data disobey the rule.\n");
+		// 	quitf(_fail, "Answer data disobey the rule.");
+		// }
+		// if (outf != "YES" && outf != "NO") {
+		// 	printf("Error: Output data disobey the rule.\n");
+		// 	quitf(_wa, "Output data disobey the rule.");
+		// }
 		if (ansf != outf) {
 			printf("Error: Diffrence on 1st line.\n");
 			quitf(_wa, "Diffrence on 1st line.");
