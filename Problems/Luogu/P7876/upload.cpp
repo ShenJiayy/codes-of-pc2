@@ -1,9 +1,11 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define int long long
+#define debugBCG
+#define debugMerge
 const int N = 100;
-int f[N + 5], rnk[N + 5], rt[N + 5];
-bool vis[N + 5], a[N + 5][N + 5], s[N + 5][N + 5];
+int f[N + 5], rnk[N + 5], rt[N + 5], s[N + 5][N + 5];
+bool vis[N + 5], a[N + 5][N + 5];
 vector<int> g[N + 5];
 int find(int id) {
     if (f[id] != id)
@@ -15,6 +17,12 @@ void merge(int x, int y) {
     if (fx != fy)
         f[fx] = fy;
 }
+#ifdef debugBCG
+int bcgccc;
+#endif
+#ifdef debugMerge
+int mgrccc, mgrmnt;
+#endif
 signed main() {
 	int cas, T;
     cin >> cas >> T;
@@ -40,9 +48,22 @@ signed main() {
                             hasans = 0;
         for (int i = 1; i <= n; i ++)
             for (int j = 1; j <= n; j ++)
-                if (i != j)
-                    if (!a[i][j])
+                if (i != j && !a[i][j]) {
+                        #ifdef debugMerge
+                            mgrmnt ++;
+                        #endif
                         merge(i, j);
+                    }
+        #ifdef debugMerge
+            mgrccc ++;
+            string nmemgr = "debug/mgr/";
+            nmemgr += to_string(mgrccc);
+            nmemgr += ".txt";
+            freopen(nmemgr.data(), "w", stderr);
+            cerr << mgrmnt;
+            mgrmnt = 0;
+            fclose(stderr);
+        #endif
         for (int i = 1; i <= n; i ++)
             g[find(i)].push_back(i);
         for (int blk = 1; blk <= n; blk ++)
@@ -60,11 +81,20 @@ signed main() {
                     if (rnk[i] == 0) rt[blk] = i;
                 }
             }
-        hasans &= !(cnt > 1 && m == 1);
-        if (!hasans) {
+        if (!hasans || (m == 1 && cnt != 1)){
             cout << "NO\n";
             continue;
         }
+        #ifdef debugBCG
+            bcgccc ++;
+            string nmebcg = "debug/bcg/";
+            nmebcg += to_string(bcgccc);
+            nmebcg += ".csv";
+            freopen(nmebcg.data(), "w", stderr);
+            for (int i = 1; i <= n; i ++)
+                cerr << f[i] << ",";
+            fclose(stderr);
+        #endif
         int sum = 0;
         for (int i = 1; i <= n; i ++)
             if (!g[i].empty()) {

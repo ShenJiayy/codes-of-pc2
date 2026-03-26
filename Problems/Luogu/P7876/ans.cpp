@@ -28,12 +28,14 @@ int main(){
 			for(int i=1;i<=n;i++)
 				for(int j=1;j<=n;j++){
 					if(i==j||j==k||k==i)continue;
-					if(a[i][k]==0&&a[k][j]==0&&a[i][j]!=0)f=0;
+					if(a[i][k]==0&&a[k][j]==0&&a[i][j]!=0)
+						f=0;
 				} 
 		for(int i=1;i<=n;i++)fa[i]=i;
 		for(int i=1;i<=n;i++)
 			for(int j=1;j<=n;j++)
-				if(i!=j&&!a[i][j])Union(i,j);//处理块 
+				if(i!=j&&!a[i][j])
+					Union(i,j);//处理块 
 		for(int i=1;i<=n;i++)g[get(i)].push_back(i);
 		for(int x=1;x<=n;x++)
 			if(g[x].size()){
