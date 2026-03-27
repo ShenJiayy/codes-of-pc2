@@ -23,7 +23,7 @@ int main() {
         a[i].id = i;
     if (n == 2) {
         if (a[1].nxt == -1 && a[2].nxt == -1)
-            printf("%d\n1 2", min(a[1].val, a[2].val));
+            printf("%lld\n1 2", min(a[1].val, a[2].val));
         else printf("-1");
         return 0;
     }
@@ -51,9 +51,9 @@ int main() {
     if (flg) {
         ll ans = 0;
         for (int i = n / 2; i >= 1; i --)
-            ans += 1ll * (n / 2 - i + 1) * a[i].val;
+            ans += 1ll * (n / 2 + 1 - i) * a[i].val;
         printf("%lld\n", ans);
-        for (int i = n  / 2; i >= 1; i --) {
+        for (int i = n / 2; i >= 1; i --) {
             Node t = heap.top();
             if (a[i].nxt != t.id) {
                 printf("%d %d\n", a[i].id, t.id);
@@ -61,7 +61,7 @@ int main() {
             }
             else {
                 heap.pop();
-                printf("%d %d\n", a[i].id, t.id);
+                printf("%d %d\n", a[i].id, heap.top().id); // 这儿
                 heap.pop();
                 heap.push(t);
             }
@@ -77,8 +77,7 @@ int main() {
                 if (maxc.nxt != a[pos].id)
                     break;
         }
-        ll ans = 0;
-        ans += min(a[pos].val, maxc.val);
+        ll ans = min(a[pos].val, maxc.val);
         for (int i = n / 2 - 1; i >= 1; i --)
             ans += 1ll * (n / 2 + 1 - i) * a[i].val;
         printf("%lld\n", ans);

@@ -1,86 +1,126 @@
-#include <bits/stdc++.h>
-#include <queue>
+#include<bits/stdc++.h>
+#define int long long
 using namespace std;
-int n;
-bool flag;
-struct crystal {
-    int a,x,cnt,pos;//a,x为题目意思，cnt为比它小的水晶和它不能配对的个数，pos为排序前水晶的编号
-} b[500005];
-bool cmp(const crystal &x, const crystal &y) {
-    return x.a<y.a;
+struct node{
+	int v,a,x;
+}p[500001];
+int n,b[500001],s,f,t[500001],v;
+bool g[500001];
+inline bool cmp(node l,node r){
+	return l.a<r.a;
 }
-bool operator <(const crystal &x, const crystal &y) {
-    if(x.cnt==y.cnt) return x.a>y.a;
-    return x.cnt<y.cnt;
-}
-long long ans;
-priority_queue <crystal> h;//注意我在实现时优先队列是以cnt排序的，而cnt并不等于锁定的水晶数（就是这里的策略和前面说的略有不同），但这种策略也是可以保证出解的，为方便实现这里就用这种。
-int main() {
-    scanf("%d",&n);
-    for(int i=1; i<=n; i++) scanf("%d",&b[i].a);
-    for(int i=1; i<=n; i++) scanf("%d",&b[i].x);
-    for(int i=1; i<=n; i++) b[i].pos=i;
-    if(n==2) {
-        if(b[1].x==-1&&b[2].x==-1) printf("%d\n1 2\n",min(b[1].a,b[2].a));
-        else printf("-1\n");
-        return 0;
-    }
-    for(int i=1; i<=n; i++) if(b[i].x!=-1) b[b[i].x].cnt++;
-    sort(b+1,b+n+1,cmp);
-    for(int i=(n>>1)+1; i<n; i++) {
-        h.push(b[i]);
-    }
-    if(h.top().x!=-1&&h.top().cnt==n-2) {//最后一个水晶暂不入堆，此时倒数第二水晶点cnt为n-2且x不为-1就表示它和所有水晶都无法配对。
-        printf("-1\n");
-        return 0;
-    }
-    h.push(b[n]);
-    if(h.top().cnt==n-1) {//最后一个水晶如堆后，如果cnt==n-1，就代表它无法和前面的所有水晶配对
-        printf("-1\n");
-        return 0;
-    }
-    crystal t=h.top();//只有cnt最多的水晶才可能锁定前半段的所有水晶
-    for(int i=1; i<=(n>>1); i++) {
-        if(b[i].x!=t.pos) flag=1;
-    }
-    if(flag) {
-        for(int i=(n>>1); i>=1; i--) {
-            ans+=1ll*((n>>1)-i+1)*b[i].a;
-        }
-        printf("%lld\n",ans);
-        for(int i=(n>>1); i>=1; i--) {
-            t=h.top();
-            if(b[i].x!=t.pos) {
-                printf("%d %d\n",b[i].pos,t.pos);
-                h.pop();
-            } else {//如果cnt最大的水晶不能和该水晶配对，那第二大的一定可以（我们只对后半段的水晶入堆）
-                h.pop();
-                printf("%d %d\n",b[i].pos,h.top().pos);
-                h.pop();
-                h.push(t);
-            }
-        }
-    } else {
-        int p;
-        for(p=(n>>1)+1; p<=n; p++) {
-            if(b[p].a<t.a) {
-                if(b[p].x!=t.pos) break;
-            }
-            if(b[p].a>t.a) {
-                if(t.x!=b[p].pos) break;
-            }
-        }
-        ans+=min(b[p].a,t.a);
-        for(int i=(n>>1)-1; i>=1; i--) {
-            ans+=1ll*((n>>1)-i+1)*b[i].a;
-        }
-        printf("%lld\n",ans);
-        printf("%d %d\n",t.pos,b[p].pos);
-        h.pop();
-        for(int i=(n>>1)-1,j=n>>1; j<=n&&i>=1; i--,j++) {//一定注意分界点换了
-            if(j==p||b[j].a==t.a) j++;
-            printf("%d %d\n",b[i].pos,b[j].pos);
-        }
-    }
-    return 0;
+signed main(){
+	cin.tie(nullptr)->sync_with_stdio(0);
+	cin>>n;
+	for(int i=1;i<=n;i++){
+		cin>>p[i].a;
+		p[i].v=i;
+	}
+	for(int i=1;i<=n;i++){
+		cin>>p[i].x;
+	}
+	sort(p+1,p+n+1,cmp);
+	for(int i=n;i>=1;i--){
+		if(p[i].x!=-1){
+			p[i].x=b[p[i].x];
+		}
+		b[p[i].v]=i;
+	}
+	for(int i=1;i<=n-2;i++){
+		if(p[i].x==n-1){
+			s++;
+		}
+	}
+	if(s==n-2&&p[n-1].x==n){
+		f=1;
+	}
+	s=0;
+	for(int i=1;i<=n-1;i++){
+		if(p[i].x==n){
+			s++;
+		}
+	}
+	if(s==n-1){
+		f=1;
+	}
+	if(f==1){
+		cout<<"-1\n";
+	}
+	else{
+		s=0;
+		for(int i=2;i<=n/2;i++){
+			if(p[i].x!=p[i-1].x){
+				f=1;
+				break;
+			}
+		}
+		if(f==1||p[1].x==-1){
+			for(int i=1;i<=n/2;i++){
+				s+=p[i].a*(n/2-i+1);
+			}
+			cout<<s<<'\n';
+			for(int i=1,j=n/2+1,k=n/2+2;i<=n/2-1;i++){
+				if(p[i].x!=j){
+					t[i]=j;
+					j=k;
+					k++;
+				}
+				else{
+					t[i]=k;
+					k++;
+				}
+				g[t[i]]=1;
+			}
+			for(int i=n/2+1;i<=n;i++){
+				if(!g[i]){
+					v=i;
+					break;
+				}
+			}
+			if(p[n/2].x!=v){
+				t[n/2]=v;
+			}
+			else{
+				for(int i=1;i<=n/2-1;i++){
+					if(p[i].x!=v){
+						t[n/2]=t[i];
+						t[i]=v;
+						break;
+					}
+				}
+			}
+			for(int i=n/2;i>=1;i--){
+				cout<<p[i].v<<' '<<p[t[i]].v<<'\n';
+			}
+		}
+		else{
+			for(int i=1;i<=n/2-1;i++){
+				s+=p[i].a*(n/2-i+1);
+			}
+			for(int i=n/2+1;i<=p[1].x-1;i++){
+				if(p[i].x!=p[1].x){
+					f=i;
+					s+=p[i].a;
+					break;
+				}
+			}
+			if(f==0){
+				if(p[p[1].x].x==p[1].x+1){
+					f=p[1].x+2;
+				}
+				else{
+					f=p[1].x+1;
+				}
+				s+=p[p[1].x].a;
+			}
+			cout<<s<<'\n'<<p[p[1].x].v<<' '<<p[f].v<<'\n'<<p[n/2].v<<' '<<p[n/2-1].v<<'\n';
+			for(int i=n/2-2,j=n;i>=1;i--,j--){
+				if(j==p[1].x||j==f){
+					j--;
+				}
+				cout<<p[i].v<<' '<<p[j].v<<'\n';
+			}
+		}
+	}
+	return 0;
 }
