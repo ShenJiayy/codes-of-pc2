@@ -2,7 +2,7 @@
 #define ll long long
 using namespace std;
 string a,b;
-ll q,cnt[100][26],len[100]; 
+ll q,cnt[100][30],len[100]; 
 ll cal(int k,ll x,char c){
 	if(k==1){
 		int tmp=0;
@@ -18,8 +18,9 @@ ll cal(int k,ll x,char c){
 		}
 		return tmp;
 	}
+	// 评语：Ln 7-Ln 20：bro你在干啥
 	if(x<=len[k-1]) return cal(k-1,x,c);
-	else return cnt[k-1][c-'a']+cal(k-2,x-len[k-1],c);
+	else return cnt[k-1][c-'a']+cal(k-2,x-len[k-1],c); // 评语：你cnt???
 }
 int main(){
     ios::sync_with_stdio(0);
@@ -41,11 +42,12 @@ int main(){
 			cnt[i][j]=cnt[i-1][j]+cnt[i-2][j];
 		}
 	}
+	// 评语：Ln 39-Ln 44: What are you going to do??
 	while(q--){
 		int l,r;
 		char c;
 		cin>>l>>r>>c;
-		cout<<cal(88,r,c)-cal(88,l-1,c)<<"\n";
+		cout<<cal(88,r,c)-cal(88,l-1,c)<<"\n"; // 评语: And what???
 	}
     return 0;
 }
