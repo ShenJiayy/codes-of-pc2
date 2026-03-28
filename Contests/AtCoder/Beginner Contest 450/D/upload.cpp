@@ -11,14 +11,8 @@ signed main() {
     for (int i = 1; i <= n; i ++)
         a[i] %= k;
     sort(a + 1, a + n + 1);
-    deque<int> dq;
-    for (int i = 1; i <= n; i ++)
-        dq.push_back(a[i]);
-    for (int i = 1; i <= n; i ++) {
-        dq.push_back(dq.front() + k);
-        dq.pop_front();
-        ans = min(ans, dq.back() - dq.front());
-    }
+    for (int i = 1; i <= n; i ++) 
+        ans = min(ans, max(abs(a[i] - (a[i - 1] + k)), abs(a[i] - a[n])));
     cout << ans;
     return 0;
 }
