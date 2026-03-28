@@ -1,0 +1,4 @@
+cat ./sample/1.in | ./run > ./sample/1.out
+diff ./sample/1.ans ./sample/1.out
+cat ./sample/2.in | ./run > ./sample/2.out
+diff ./sample/2.ans ./sample/2.out
