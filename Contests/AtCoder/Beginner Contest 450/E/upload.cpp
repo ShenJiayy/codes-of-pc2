@@ -1,14 +1,22 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define int long long
-const int N = 2e7;
-string s[N + 5];
+string a, b;
+char dfs(int n) {
+	if (n == 1) 
+		cout << a;
+	else if (n == 2)
+		cout << b;
+	else {dfs(n - 1); dfs(n - 2);}
+	return '\0';
+} 
 signed main() {
     int n;
-    cin >> n >> s[1] >> s[2];
-    for (int i = 3; i <= n; i ++)
-        s[i] = s[i - 1] + s[i - 2];
-    for (int i = 1; i <= n; i ++)
-        cout << i << ": " << s[i] << endl;
+    cin >> n >> a >> b;
+    for (int i = 1; i <= n; i ++) {
+        cout << i << ": ";
+		dfs(i);
+		cout << endl;
+	}
     return 0;
 }
