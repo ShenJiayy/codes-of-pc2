@@ -3,21 +3,25 @@ using namespace std;
 #define int long long
 const int N = 1e5;
 int f1[N + 5], f2[N + 5], tme[N + 5];
-pair<int, int> p[N];
-void solve(int n, int m, int f[]) {
-	for (int i = 0; i < m; i ++)
-		scanf("%lld %lld", &p[i].first, &p[i].second);
-	sort(p, p + m);
-	int cur = 0;
-	for (int i = 0; i < m; i ++) {
-		tme[i] = 0;
-		int a = p[i].first, b = p[i].second, pos = 1;
-		while (pos <= cur && tme[pos] > a) pos ++;
-		f[pos] ++, tme[pos] = b;
-		if (pos >= cur) cur = pos;
+void solve(int n, int m, int s[]) {
+	map<int, int> depart;
+	for (int i = 1; i <= m; i ++) {
+		int a, b;
+		scanf("%lld %lld", &a, &b);
+		depart[a] = b;
 	}
-	for (int i = 1; i <= n; i ++)
-		f[i] += f[i - 1];
+	s[0] = 0;
+	for (int i = 1; i <= n; i ++) {
+		s[i] = s[i - 1];
+		auto it = depart.begin();
+		while (it != depart.end()) {
+			s[i] ++;
+			// Go next.
+			int b = it->second;
+			depart.erase(it);
+			it = depart.upper_bound(b);
+		}
+	}
 }
 signed main() {
 	int n, m1, m2;
