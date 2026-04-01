@@ -4,5 +4,10 @@ rm -rf ./debug/*.csv
 for i in 1 2 3 4
 do
     cat ./data/sample/$i.in | ./run debug/$i/f.csv debug/$i/g.csv > ./data/sample/$i.out
-    diff -w ./data/sample/$i.ans ./data/sample/$i.out 1>./log/$i.log 2>/dev/null
+    diff -w ./data/sample/$i.ans ./data/sample/$i.out 1>./log/$i.log 2>&1
+    if [ $? -eq 0 ]; then
+        echo Test Case $i: Correct.
+    else
+        echo Test Case $i: Not Correct.
+    fi
 done
