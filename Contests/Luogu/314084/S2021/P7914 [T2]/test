@@ -1,0 +1,8 @@
+./build
+rm -rf ./log/*.log
+rm -rf ./debug/*.csv
+for i in 1 2 3 4
+do
+    cat ./data/sample/$i.in | ./run debug/$i/f.csv debug/$i/g.csv > ./data/sample/$i.out
+    diff -w ./data/sample/$i.ans ./data/sample/$i.out 1>./log/$i.log 2>/dev/null
+done
