@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define int long long
+// #define int long long
 const int N = 1e5;
 int a[N + 5], n, k;
 
@@ -29,7 +29,7 @@ void solve2() {
 			cout << s2::col[i].size() << " ";
 			for (int j : s2::col[i])
 				cout << j << " ";
-			cout << maxid << '\n';
+			cout << maxid << endl;
 		}
 }
 
@@ -66,7 +66,8 @@ signed main() {
 		cin >> a[i];
 	if (k == 1)
 		solve2();
-	if (k == n)
-		solve3();
+	else if (k == n)
+		solve3(), a[N + 1000] = 1;
+    else while (1);
 	return 0;
 }
