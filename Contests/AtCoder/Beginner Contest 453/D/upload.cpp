@@ -29,7 +29,7 @@ void bfs(int i, int j, int kk) {
 //        if (dis[t.x + dx[t.k]][t.y + dy[t.k]][t.k] > 5e6) return ;
 //        if (vis[t.x][t.y]) continue;
 //        vis[t.x][t.y] = 1;
-        cerr << t.x << t.y << t.k << endl;
+        // cerr << t.x << t.y << t.k << endl;
         if (c[t.x][t.y] == 'G') {
             cout << "Yes\n";
             print(t.x, t.y, t.k);
