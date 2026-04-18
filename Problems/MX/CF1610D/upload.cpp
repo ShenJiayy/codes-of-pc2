@@ -1,39 +1,36 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define int long long
-const int N = 2e5, mod = 1e9 + 7;
-int n, a[N + 5], b[N + 5], cnt;
-bool vis[N + 5];
-bool check(int k, int c[]) {
-    if (k == 0) return 0;
-    int p = 0;
-    for (int i = 1; i <= k; i ++)
-        p += c[i] * (c[i] - 1) / 2;
-    int gcd = c[1];
-    for (int i = 1; i <= k; i ++)
-        gcd = __gcd(gcd, c[i]);
-    return -p % gcd == 0;
+const int lgN = 63, mod = 1e9 + 7;
+int t[lgN + 5];
+int binl0cnt(int x) {
+    int cnt = 0;
+    for (; !(x & 1); x >>= 1) cnt ++;
+    return cnt;
 }
-void dfs(int id) {
-    if (id > n) {
-        int cur = 0;
-        for (int i = 1; i <= n; i ++)
-            if (vis[i])
-                b[++ cur] = a[i];
-        cnt += check(cur, b);
-        cnt %= mod;
-        return ;
-    }
-    vis[id] = 0;
-    dfs(id + 1);
-    vis[id] = 1;
-    dfs(id + 1);
+int fp(int a, int b, int p) {
+    int ret = 1;
+    for (; b; b >>= 1, a = a * a % p)
+        if (b & 1)
+            ret = ret * a % p;
+    return ret;
 }
 signed main() {
+    int n;
     cin >> n;
-    for (int i = 1; i <= n; i ++)
-        cin >> a[i];
-    dfs(1);
-    cout << cnt;
+    for (int i = 1; i <= n; i ++) {
+        int a;
+        cin >> a;
+        t[binl0cnt(a)] ++;
+    }
+    int ans = 0, s = 0;
+    for (int i = lgN; i >= 1; i --) {
+        if (t[i] >= 2)
+            ans += (fp(2, t[i] - 1, mod) - 1) * fp(2, s, mod), ans %= mod;
+        s += t[i];
+    }
+    ans += (fp(2, t[0], mod) - 1) * fp(2, s, mod), ans %= mod;
+    ans += mod, ans %= mod;
+    cout << ans;
     return 0;
 }
