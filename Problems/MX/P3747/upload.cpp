@@ -6,7 +6,7 @@ int p, c, maxm;
 int a[N + 5];
 namespace func {
     int gcd(int a, int b) {
-        if (a == 0) return b;
+        if (b == 0) return a;
         return gcd(b, a % b);
     }
     int phi(int x) {
@@ -22,7 +22,7 @@ namespace func {
         return ret;
     }
 }
-const int lgN = 30, pP = 1e4;
+const int lgN = 26, pP = 1e4;
 int phi[lgN + 5], gcd[lgN + 5];
 int s1[pP + 5][lgN + 5], s2[pP + 5][lgN + 5];
 bool b1[pP + 5][lgN + 5], b2[pP + 5][lgN + 5];
@@ -43,67 +43,60 @@ void init(int n) {
     for (int i = 0; i <= maxm; i ++)
         gcd[i] = func::gcd(c, phi[i]);
     
-    // Array `s2`, `a2` init.
+    // Array `s2`, `b2` init.
     // Lne 48-57
     for (int j = 0; j <= maxm; j ++) {
         s2[0][j] = 1;
-        for (int i = 1; i <= pP; i ++) {
+        b2[0][j] = 0; // NL.2
+        for (int i = 1; i <= 10000; i ++) {
             s2[i][j] = s2[i - 1][j] * c;
-            b2[i][j] = b2[i - 1][j];
-            if (s2[i][j] > phi[j])
+            b2[i][j] |= b2[i - 1][j]; // ER.1
+            if (s2[i][j] >= phi[j]) // ER.6
                 s2[i][j] %= phi[j],
                 b2[i][j] = 1;
         }
     }
     
-    // Array `s1`, `a1` init.
+    // Array `s1`, `b1` init.
     // Lne 61-71
     for (int j = 0; j <= maxm; j ++) {
         s1[0][j] = 1;
-        for (int i = 1; i <= pP; i ++) {
-            s1[i][j] = s1[i - 1][j] * c;
-            s1[i][j] *= s2[pP][j];
-            b2[i][j] = b2[i - 1][j];
-            if (s1[i][j] > phi[j])
+        for (int i = 1; i <= 10000; i ++) {
+            s1[i][j] = s1[i - 1][j]; // ER.4
+            s1[i][j] *= s2[10000][j];
+            b1[i][j] |= b1[i - 1][j]; // ER.2
+            b1[i][j] |= b2[10000][j]; // NL.1
+            if (s1[i][j] >= phi[j]) // ER.7
                 s1[i][j] %= phi[j],
-                b2[i][j] = 1;
+                b1[i][j] = 1; // ER.3
         }
 
     }
     
     // Array `ts`, `tb` init.
-    // Lne
-    /*
-    for(int i=1;i<=n;i++){
-		for(int k=0;k<=len;k++){
-			f[i][0][k]=a[i]%phi[k];
-			if(a[i]>=phi[k])bj[i][0][k]=1;
-		}
-        for(int j=1;j<=len;j++) {
-			f[i][j][len]=0;
-			for(int k=0;k<len;k++){
-				f[i][j][k]=s1[f[i][j-1][k+1]/10000][k]*s2[f[i][j-1][k+1]%10000][k];
-				bj[i][j][k]=(b1[f[i][j-1][k+1]/10000][k]||b2[f[i][j-1][k+1]%10000][k]);
-				if(f[i][j][k]>=phi[k]){f[i][j][k]%=phi[k];bj[i][j][k]=1;}
-				if(g[k]!=1&&bj[i][j-1][k+1]){
-					f[i][j][k]=f[i][j][k]*s1[phi[k+1]/10000][k]%phi[k]*s2[phi[k+1]%10000][k];
-					if(f[i][j][k]>=phi[k]){f[i][j][k]%=phi[k];bj[i][j][k]=1;}
-					bj[i][j][k]=(bj[i][j][k]||b1[phi[k+1]/10000][k]||b2[phi[k+1]%10000][k]);
-				}
-			}	
-		}
-	}
-    */
+    // Lne 76-99
     for (int i = 1; i <= n; i ++) {
         // Note: This is the initalize when j=0.
         for (int k = 0; k <= maxm; k ++) {
             ts[i][0][k] = a[i] % phi[k];
             if (a[i] >= phi[k]) 
                 tb[i][0][k] = 1;
+            else tb[i][0][k] = 0;
         }
-        for (int j = 0; j <= maxm; j ++)
+        for (int j = 1; j <= maxm; j ++) // ER.5
             for (int k = 0; k < maxm; k ++) {
-                
+                ts[i][j][k] = s1[ts[i][j - 1][k + 1] / 10000][k] * s2[ts[i][j - 1][k + 1] % 10000][k];
+                tb[i][j][k] = b1[ts[i][j - 1][k + 1] / 10000][k] | b2[ts[i][j - 1][k + 1] % 10000][k];
+                if (ts[i][j][k] >= phi[k])
+                    ts[i][j][k] %= phi[k],
+                    tb[i][j][k] = 1;
+                if (gcd[k] != 1 && tb[i][j - 1][k + 1]) {
+                    ts[i][j][k] = ts[i][j][k] * s1[phi[k + 1] / 10000][k] % phi[k] * s2[phi[k + 1] % 10000][k];
+                    if (ts[i][j][k] >= phi[k])
+                        ts[i][j][k] %= phi[k],
+                        tb[i][j][k] = 1;
+                    tb[i][j][k] |= b1[phi[k + 1] / 10000][k] | b2[phi[k + 1] % 10000][k];
+                }
             }
     }
 }
@@ -133,18 +126,8 @@ struct SegTree {
             a[i] = _a[i];
         build(1, 1, n);
     }
-    void init(vector<int> _a) {
-        size = _a.size();
-        a.resize(size + 5, 0);
-        for (int i = 0; i < _a.size(); i ++)
-            a[i + 1] = _a[i];
-        s.resize(size * 4 + 5, 0);
-        tg.resize(size * 4 + 5, 0);
-        build(1, 1, size);
-    }
     SegTree() { init(); }
     SegTree(int n, int _a[]) { init(n, _a); }
-    SegTree(vector<int> _a) { init(_a); }
     void resize(int _size) {
         size = _size;
         a.resize(size + 5, 0);
@@ -156,7 +139,7 @@ struct SegTree {
         tg[pt] = min(tg[pt * 2], tg[pt * 2 + 1]);
     }
     void updateBlock(int ql, int qr, int pt, int l, int r) {
-        if (tg[pt] > maxm) return ;
+        if (tg[pt] >= maxm) return ; // ER.8
         if (l == r) {
             tg[pt] ++;
             s[pt] = ts[l][tg[pt]][0] % p;
@@ -174,9 +157,9 @@ struct SegTree {
             return s[pt];
         int res = 0, mid = l + r >> 1;
         if (ql <= mid)
-            res += queryBlock(ql, qr, pt * 2, l, mid);
+            res += queryBlock(ql, qr, pt * 2, l, mid) % p, res %= p; // ER.9
         if (qr > mid)
-            res += queryBlock(ql, qr, pt * 2 + 1, mid + 1, r);
+            res += queryBlock(ql, qr, pt * 2 + 1, mid + 1, r) % p, res %= p; // ER.10
         return res;
     }
 };
