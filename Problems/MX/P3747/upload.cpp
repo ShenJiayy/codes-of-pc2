@@ -9,7 +9,7 @@ namespace func {
         if (b == 0) return a;
         return gcd(b, a % b);
     }
-    int phi(int x) {
+    inline int phi(int x) {
         int ret = x;
         for (int i = 2; i * i <= x; i ++)
             if (x % i == 0) {
@@ -28,7 +28,7 @@ int s1[pP + 5][lgN + 5], s2[pP + 5][lgN + 5];
 bool b1[pP + 5][lgN + 5], b2[pP + 5][lgN + 5];
 int ts[N + 5][lgN + 5][lgN + 5];
 bool tb[N + 5][lgN + 5][lgN + 5];
-void init(int n) {
+inline void init(int n) {
     // Array `phi` init.
     // Lne 34-39
     int bp = p;
