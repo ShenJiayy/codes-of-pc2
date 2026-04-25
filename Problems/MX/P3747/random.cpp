@@ -2,9 +2,10 @@
 using namespace std;
 
 int randint(int st, int ed) {
-    string cmd = "rand.py " + to_string(st) + " ";
-    cmd = cmd + to_string(ed);
-    return system(cmd.data());
+    static ifstream rand_dev("/dev/random", ios::binary);
+    unsigned int x;
+    rand_dev.read((char*)&x, sizeof(x));
+    return st + x % (ed - st + 1);
 }
 int main() {
     int n = randint(1, 5e4);
