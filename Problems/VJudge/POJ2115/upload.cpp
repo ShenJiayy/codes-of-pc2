@@ -28,8 +28,9 @@ int solve(int a, int b, int c, int k) {
     int gcd = exgcd(c, 1 << k, x1, y1);
     int cc = b - a;
     if (cc % gcd) return -1;
-    int lcm = c / gcd * (1 << k);
-    
+    x1 *= cc / gcd, y1 *= cc / gcd;
+    // module's code is hidden.
+    return x1;
 }
 signed main() {
 	while (1) {
