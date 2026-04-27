@@ -1,13 +1,7 @@
-#include <bits/stdc++.h>
+#include <iostream>
 using namespace std;
 #define int unsigned long long
-// pair<int, pair<int, int>> exgcd(int a, int b) {
-//     if (b == 0) return {a, {1, 0}};
-//     auto res = exgcd(b, a % b);
-//     int gcd = res.first;
-//     int x = res.second.first, y = res.second.second;
-//     return {gcd, {y, x - a / b * y}};
-// }
+// #define debug
 int exgcd(int a, int b, int &x, int &y) {
     if (b == 0) {
         x = 1, y = 0;
@@ -19,13 +13,11 @@ int exgcd(int a, int b, int &x, int &y) {
     return gcd;
 }
 int solve(int a, int b, int c, int k) {
-    // It seems to solve a problem that
-    // a + xc + y(2^k) = b
-    // xc + y(2^k) = b-a
-    // to get the x_min
-    // looks like to use a `exgcd`
+    // Diffrent: c=0
+    if (c == 0) 
+        return (a == b)?0:-1;
     int x1, y1;
-    int pw2k = 1 << k;
+    int pw2k = 1ull << k;
     int gcd = exgcd(c, pw2k, x1, y1);
     int cc = b - a;
     if (cc % gcd) return -1;
@@ -35,6 +27,18 @@ int solve(int a, int b, int c, int k) {
     int x1d = lcm / c, y1u = lcm / pw2k;
     if (x1 > x1d) 
         y1u *= x1 / x1d, x1 %= x1d;
+    #ifdef debug
+    cerr << "Values: \n";
+    cerr << "x1 = " << x1 << endl;
+    cerr << "y1 = " << y1 << endl;
+    cerr << "pw2k = " << pw2k << endl;
+    cerr << "gcd = " << gcd << endl;
+    cerr << "cc = " << cc << endl;
+    cerr << "mul = " << mul << endl;
+    cerr << "lcm = " << lcm << endl;
+    cerr << "x1d = " << x1d << endl;
+    cerr << "y1u = " << y1u << endl;
+    #endif
     return x1;
 }
 signed main() {
