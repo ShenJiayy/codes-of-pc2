@@ -25,11 +25,16 @@ int solve(int a, int b, int c, int k) {
     // to get the x_min
     // looks like to use a `exgcd`
     int x1, y1;
-    int gcd = exgcd(c, 1 << k, x1, y1);
+    int pw2k = 1 << k;
+    int gcd = exgcd(c, pw2k, x1, y1);
     int cc = b - a;
     if (cc % gcd) return -1;
-    x1 *= cc / gcd, y1 *= cc / gcd;
-    // module's code is hidden.
+    int mul = (cc / gcd);
+    x1 *= mul, y1 *= mul;
+    int lcm = c / gcd * pw2k;
+    int x1d = lcm / c, y1u = lcm / pw2k;
+    if (x1 > x1d) 
+        y1u *= x1 / x1d, x1 %= x1d;
     return x1;
 }
 signed main() {

@@ -3,7 +3,7 @@
         {
             "name": "Win32",
             "includePath": [
-                "${workspaceFolder}/**"
+                "e:/Codes/**"
             ],
             "defines": [
                 "_DEBUG",
@@ -12,7 +12,13 @@
             ],
             "cStandard": "c11",
             "cppStandard": "c++14",
-            "intelliSenseMode": "windows-gcc-x64"
+            "intelliSenseMode": "windows-gcc-x64",
+            "mergeConfigurations": false,
+            "recursiveIncludes": {},
+            "compilerPath": "C:/Program Files/MinGW64/bin/g++.exe",
+            "browse": {
+                "limitSymbolsToIncludedHeaders": true
+            }
         },
         {
             "name": "POJ (C++98)",
