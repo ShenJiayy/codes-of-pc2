@@ -1,24 +1,32 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define int long long
-const int N = 1e5;
-int c[N + 5][N + 5];
-int lucas(int n, int k, int p) {
-	if (k == 0) return 1;
-	return (c[n % p + 1][k % p + 1] * lucas(n / p, k / p, p)) % p;
+int fp(int a, int b, int p) {
+	int ret = 1;
+	for (; b; b >>= 1, a = a * a % p)
+		if (b & 1)
+			ret = ret * a % p;
+	return ret;
+}
+int getc(int n, int m, int p) {
+	if (n < m) return 0;
+	if (m > n - m) m = n - m;
+	int s1 = 1, s2 = 1;
+	for (int i = 0; i < m; i ++)
+		s1 = s1 * (n - i) % p, s2 = s2 * (i + 1) % p;
+	return s1 % p * fp(s2, p - 2, p) % p;
+}
+int lucas(int n, int m, int p) {
+	if (m == 0) return 1;
+	return getc(n % p, m % p, p) * lucas(n / p, m / p, p) % p;
 }
 signed main() {
-	int T;
+    int T;
 	cin >> T;
 	while (T --) {
 		int n, m, p;
 		cin >> n >> m >> p;
-		c[0][0] = 1;
-		for (int i = 1; i <= p; i ++)
-			for (int j = 1; j <= i; j ++)
-				c[i][j] = c[i - 1][j] + c[i - 1][j - 1], c[i][j] %= p;
-		cout << lucas(n + m, m, p) << endl;
+		cout << lucas(n + m, n, p) << endl;
 	}
-	return 0;
+    return 0;
 }
-
