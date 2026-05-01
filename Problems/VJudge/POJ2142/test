@@ -1,13 +1,15 @@
-g++ upload.cpp -o2 -std=c++14 -Wl,--stack=14104857600 -g -o run
+g++ upload.cpp -O2 -std=c++98 -Wl,--stack=14104857600 -g -o run
 if [ $? -ne 0 ];
 then
     echo -e "\033[31mBuild Error!\033[0m"
     exit 1
 fi
-cat data.in | ./run > data.out
+cat data.in | ./run 1>data.out 2>run.log
 if [ $? -ne 0 ];
 then
-    echo -e "\033[35mBuild Error!\033[0m"
+    echo -e "\033[35mRuntime Error!\033[0m"
+    cat run.log
+    rm run.log
     exit 1
 fi
 diff data.out data.ans -w 1>/dev/null 2>/dev/null

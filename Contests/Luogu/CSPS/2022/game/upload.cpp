@@ -1,8 +1,9 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define int long long
+const int N = 1e5;
 struct RMQ {
-    int f[100005][30];
+    int f[N + 5][30];
     RMQ() {
         memset(f, -0x3f, sizeof f);
     }
@@ -18,10 +19,26 @@ struct RMQ {
         return max(f[sz][l], f[sz][r - (1 << sz) + 1]);
     }
 } AMax, DnAMax, BMax, AMin, UpAMin, BMin;
-const int N = 1e5;
 int a[N + 5], b[N + 5];
 bool valid(int x) {
     return -9e12 <= x && x <= 9e12;
+}
+int solve(int l1, int r1, int l2, int r2) {
+    int ans = -9e18;
+    int amx = AMax.query(l1, r1);
+    int amn = AMin.query(l1, r1);
+    int aumn = UpAMin.query(l1, r1);
+    int admx = DnAMax.query(l1, r1);
+    int bmx = BMax.query(l2, r2);
+    int bmn = BMin.query(l2, r2);
+    if (bmn >= 0) 
+        return amx * ((amx > 0) ? bmn : bmx);
+    if (bmx <= 0) 
+        return amn * ((amn > 0) ? bmn : bmx);
+    // max*=nmaxA.query(l1,r1),min*=pminA.query(l1,r1);
+    // return min>0||max<=0&&max>min?max:min;
+    int maxn = bmx * admx, minn = bmn * aumn;
+    return (minn > 0 || maxn <= 0 && maxn > minn)?maxn:minn;    
 }
 signed main() {
 	/*
@@ -43,36 +60,25 @@ signed main() {
     AMax.init(n, a, [](int a, int b){return a>b?a:b;});
     AMin.init(n, a, [](int a, int b){return a<b?a:b;});
     DnAMax.init(n, a, [](int a, int b){
-        if (a > b) swap(a, b);
-        if (a > 0) return (int)(-9e18);
-        if (b > 0) return a;
-        return b; 
+        // if (a > b) swap(a, b);
+        // if (a > 0) return (int)(-9e18);
+        // if (b > 0) return a;
+        // return b; 
+        return (b >= 0 || a < 0 && a > b)?a:b;
     });
     UpAMin.init(n, a, [](int a, int b){
-        if (a < b) swap(a, b);
-        if (a < 0) return (int)(-9e18);
-        if (b < 0) return a;
-        return b; 
+        // if (a < b) swap(a, b);
+        // if (a < 0) return (int)(-9e18);
+        // if (b < 0) return a;
+        // return b; 
+        return (b < 0 || a >= 0 && a < b)?a:b;
     });
     BMax.init(m, b, [](int a, int b){return a>b?a:b;});
     BMin.init(m, b, [](int a, int b){return a<b?a:b;});
     while (q --) {
         int l1, r1, l2, r2;
         cin >> l1 >> r1 >> l2 >> r2;
-        int ans = -9e18;
-        int amx = AMax.query(l1, r1);
-        int amn = AMin.query(l1, r1);
-        int aumn = UpAMin.query(l1, r1);
-        int admx = DnAMax.query(l1, r1);
-        int bmx = BMax.query(l2, r2);
-        int bmn = BMin.query(l2, r2);
-        ans = max(ans, amx * (amx >= 0 ? bmn : bmx));
-        ans = max(ans, amn * (amn >= 0 ? bmn : bmx));
-        if (valid(aumn))
-            ans = max(ans, aumn * (aumn >= 0 ? bmn : bmx));
-        if (valid(admx))
-            ans = max(ans, admx * (admx >= 0 ? bmn : bmx));
-        cout << ans << endl;
+        cout << solve(l1, r1, l2, r2) << endl;
     }
     return 0;
 }

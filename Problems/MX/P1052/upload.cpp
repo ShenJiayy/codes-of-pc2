@@ -15,7 +15,6 @@ signed main() {
             if (x % s == 0)
                 cnt ++;
         }
-        // 排序？？？？没必要的哈
         cout << cnt;
         return 0;
     }
@@ -32,7 +31,7 @@ signed main() {
     for (int i = 1; i <= l + 9; i ++) {
         for (int j = s; j <= t; j ++) 
             if (i - j >= 0)
-                dp[i] = min(dp[i], dp[j] + vis[i]);
+                dp[i] = min(dp[i], dp[i - j] + vis[i]);
     }
     int ans = 9e18;
     for (int i = l; i <= l + 9; i ++)
