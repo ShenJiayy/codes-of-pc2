@@ -21,10 +21,27 @@
             }
         },
         {
-            "name": "POJ (C++98)",
+            "name": "Linux",
             "includePath": [
-                "/workspaces/codes-of-pc2/**"
+                "${workspaceFolder}/**"
             ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "cStandard": "c11",
+            "cppStandard": "c++14",
+            "intelliSenseMode": "linux-gcc-x64",
+            "mergeConfigurations": false,
+            "recursiveIncludes": {},
+            "compilerPath": "/usr/bin/g++",
+            "browse": {
+                "limitSymbolsToIncludedHeaders": true
+            }
+        },
+        {
+            "name": "POJ (C++98)",
             "defines": [
                 "_DEBUG",
                 "UNICODE",
@@ -33,8 +50,7 @@
             "cStandard": "c99",
             "cppStandard": "c++98",
             "intelliSenseMode": "windows-gcc-x64",
-            "compilerPath": "/usr/bin/g++",
-            "compilerPathInCppPropertiesJson": "C:/Program Files/MinGW64/bin/g++.exe",
+            "compilerPath": "C:/Program Files/MinGW64/bin/g++.exe",
             "mergeConfigurations": false,
             "recursiveIncludes": {},
             "browse": {
@@ -44,7 +60,7 @@
         {
             "name": "AtCoder (C++23)",
             "includePath": [
-                "/workspaces/codes-of-pc2/**"
+                "${workspaceFolder}/**"
             ],
             "defines": [
                 "_DEBUG",
@@ -54,8 +70,7 @@
             "cStandard": "c23",
             "cppStandard": "c++23",
             "intelliSenseMode": "windows-gcc-x64",
-            "compilerPath": "/usr/bin/g++",
-            "compilerPathInCppPropertiesJson": "C:/Program Files/MinGW64/bin/g++.exe",
+            "compilerPath": "C:/Program Files/MinGW64/bin/g++.exe",
             "mergeConfigurations": false,
             "recursiveIncludes": {},
             "browse": {
@@ -75,7 +90,7 @@
             "cStandard": "c11",
             "cppStandard": "c++14",
             "intelliSenseMode": "windows-gcc-x64",
-            "compilerPath": "/usr/bin/g++"
+            "compilerPath": "C:/Program Files/MinGW64/bin/g++.exe"
         }
     ],
     "version": 4
