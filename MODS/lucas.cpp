@@ -21,12 +21,7 @@ int lucas(int n, int m, int p) {
 	return getc(n % p, m % p, p) * lucas(n / p, m / p, p) % p;
 }
 signed main() {
-    int T;
-	cin >> T;
-	while (T --) {
-		int n, m, p;
-		cin >> n >> m >> p;
-		cout << lucas(n + m, n, p) << endl;
-	}
+    
     return 0;
 }
+
