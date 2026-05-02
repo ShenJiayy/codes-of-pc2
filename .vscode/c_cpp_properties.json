@@ -3,7 +3,7 @@
         {
             "name": "Win32",
             "includePath": [
-                "e:/Codes/**"
+                "${workspaceFolder}/*"
             ],
             "defines": [
                 "_DEBUG",
@@ -15,7 +15,7 @@
             "intelliSenseMode": "windows-gcc-x64",
             "mergeConfigurations": false,
             "recursiveIncludes": {},
-            "compilerPath": "C:/Program Files/MinGW64/bin/g++.exe",
+            "compilerPath": "/usr/bin/g++",
             "browse": {
                 "limitSymbolsToIncludedHeaders": true
             }
