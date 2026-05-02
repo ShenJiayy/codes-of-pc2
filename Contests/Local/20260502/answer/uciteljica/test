@@ -1,0 +1,6 @@
+g++ uciteljica.cpp -std=c++14 -O2 -o uciteljica
+echo -----------------------------------------------
+time ./uciteljica
+echo $?
+echo -----------------------------------------------
+diff data.out data.ans -w
