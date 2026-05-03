@@ -50,17 +50,18 @@
             "cStandard": "c99",
             "cppStandard": "c++98",
             "intelliSenseMode": "windows-gcc-x64",
-            "compilerPath": "C:/Program Files/MinGW64/bin/g++.exe",
+            "compilerPath": "/usr/bin/g++",
             "mergeConfigurations": false,
             "recursiveIncludes": {},
             "browse": {
                 "limitSymbolsToIncludedHeaders": true
-            }
+            },
+            "compilerPathInCppPropertiesJson": "C:/Program Files/MinGW64/bin/g++.exe"
         },
         {
             "name": "AtCoder (C++23)",
             "includePath": [
-                "${workspaceFolder}/**"
+                "/workspaces/codes-of-pc2/**"
             ],
             "defines": [
                 "_DEBUG",
@@ -70,17 +71,18 @@
             "cStandard": "c23",
             "cppStandard": "c++23",
             "intelliSenseMode": "windows-gcc-x64",
-            "compilerPath": "C:/Program Files/MinGW64/bin/g++.exe",
+            "compilerPath": "/usr/bin/g++",
             "mergeConfigurations": false,
             "recursiveIncludes": {},
             "browse": {
                 "limitSymbolsToIncludedHeaders": true
-            }
+            },
+            "compilerPathInCppPropertiesJson": "C:/Program Files/MinGW64/bin/g++.exe"
         },
         {
             "name": "Normal (C++14)",
             "includePath": [
-                "${workspaceFolder}/**"
+                "/workspaces/codes-of-pc2/**"
             ],
             "defines": [
                 "_DEBUG",
@@ -90,7 +92,13 @@
             "cStandard": "c11",
             "cppStandard": "c++14",
             "intelliSenseMode": "windows-gcc-x64",
-            "compilerPath": "C:/Program Files/MinGW64/bin/g++.exe"
+            "compilerPath": "/usr/bin/g++",
+            "compilerPathInCppPropertiesJson": "C:/Program Files/MinGW64/bin/g++.exe",
+            "mergeConfigurations": false,
+            "recursiveIncludes": {},
+            "browse": {
+                "limitSymbolsToIncludedHeaders": true
+            }
         }
     ],
     "version": 4
