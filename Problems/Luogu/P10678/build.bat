@@ -1,0 +1,2 @@
+@Echo off
+g++ upload.cpp -o2 -std=c++14 -Wl,--stack=14104857600 -g -o run

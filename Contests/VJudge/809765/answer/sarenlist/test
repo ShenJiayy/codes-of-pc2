@@ -1,0 +1,6 @@
+g++ sarenlist.cpp -std=c++14 -O2 -o sarenlist
+echo -----------------------------------------------
+./sarenlist
+echo $?
+echo -----------------------------------------------
+diff data.out data.ans -w

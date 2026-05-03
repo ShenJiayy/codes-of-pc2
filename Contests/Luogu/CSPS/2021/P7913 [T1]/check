@@ -1,0 +1,7 @@
+g++ upload.cpp -std=c++14 -o2 -g -o run
+cat ./data/1/data.in | ./run > ./data/1/data.out
+diff ./data/1/data.out ./data/1/data.ans 1>check-1.log
+cat ./data/2/data.in | ./run > ./data/2/data.out
+diff ./data/2/data.out ./data/2/data.ans 1>check-2.log
+cat ./data/3/data.in | ./run > ./data/3/data.out
+diff ./data/3/data.out ./data/3/data.ans 1>check-3.log

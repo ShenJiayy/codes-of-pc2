@@ -1,0 +1,8 @@
+# Case 1
+cat ./data/1.in | ./run > ./data/1.out
+echo Testing Case 1
+diff -w ./data/1.out ./data/1.ans
+# Case 2
+cat ./data/2.in | ./run > ./data/2.out
+echo Testing Case 2
+diff -w ./data/2.out ./data/2.ans
