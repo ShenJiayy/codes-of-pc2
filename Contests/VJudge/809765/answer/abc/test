@@ -1,26 +1,6 @@
-g++ upload.cpp -o2 -std=c++14 -Wl,--stack=14104857600 -g -o run
-if [ $? -ne 0 ];
-then
-    echo "\033[31mBuild Error!\033[0m"
-    echo
-    exit 1
-fi
-cat data.in | ./run 1>data.out 2>run.log
-if [ $? -ne 0 ];
-then
-    echo "\033[35mRuntime Error!\033[0m"
-    cat run.log
-    rm run.log
-    echo
-    exit 1
-fi
-diff data.out data.ans -w 1>/dev/null 2>/dev/null
-if [ $? -ne 0 ];
-then
-    echo "\033[31mWrong Answer!\033[0m"
-    echo
-    exit 1
-fi
-rm data.out
-echo "\033[32mAnswer Correct!\033[0m"
-echo
+g++ abc.cpp -std=c++14 -O2 -o abc
+echo -----------------------------------------------
+./abc
+echo $?
+echo -----------------------------------------------
+diff data.out data.ans -w
