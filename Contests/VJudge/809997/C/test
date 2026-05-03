@@ -1,5 +1,5 @@
 #!/bin/bash
-g++ upload.cpp -o2 -std=c++14 -g -o run
+g++ upload.cpp -o2 -std=c++23 -g -o run
 if [ $? -ne 0 ];
 then
     echo -e "\033[31mBuild Error!\033[0m"
