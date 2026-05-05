@@ -82,7 +82,7 @@
         {
             "name": "Normal (C++14)",
             "includePath": [
-                "/workspaces/codes-of-pc2/**"
+                "${workspaceFolder}/**"
             ],
             "defines": [
                 "_DEBUG",
