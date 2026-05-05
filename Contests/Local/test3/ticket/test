@@ -1,0 +1,25 @@
+g++ ticket.cpp -O2 -std=c++14 -g -o run
+if [ $? -ne 0 ];
+then
+    echo -e "\033[31mBuild Error!\033[0m"
+    echo
+    exit 1
+fi
+time cat data.in | ./run 1>data.out 2>run.log
+if [ $? -ne 0 ];
+then
+    echo -e "\033[35mRuntime Error!\033[0m"
+    echo
+    exit 1
+fi
+diff data.out data.ans -w 1>/dev/null 2>/dev/null
+if [ $? -ne 0 ];
+then
+    echo -e "\033[31mWrong Answer!\033[0m"
+    echo
+    exit 1
+fi
+rm data.out
+rm run.log
+echo -e "\033[32mAnswer Correct!\033[0m"
+echo
