@@ -1,0 +1,7 @@
+#!/bin/bash
+g++ employ.cpp -std=c++14 -O2 -o employ 1>&2 2>/dev/null
+echo $?
+time ./employ < employ.in > employ.out 2>/dev/null
+echo $?
+diff employ.out employ.ans -w 1>&2 2>/dev/null
+echo $?
