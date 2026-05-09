@@ -76,6 +76,17 @@
             "browse": {
                 "limitSymbolsToIncludedHeaders": true
             }
+        },
+        {
+            "name": "Codeforces (C++17)",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/g++",
+            "cStandard": "c17",
+            "cppStandard": "gnu++17",
+            "intelliSenseMode": "linux-gcc-x64"
         }
     ],
     "version": 4
