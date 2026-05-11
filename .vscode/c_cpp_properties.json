@@ -1,26 +1,6 @@
 {
     "configurations": [
         {
-            "name": "Linux",
-            "includePath": [
-                "${workspaceFolder}/**"
-            ],
-            "defines": [
-                "_DEBUG",
-                "UNICODE",
-                "_UNICODE"
-            ],
-            "cStandard": "c11",
-            "cppStandard": "c++14",
-            "intelliSenseMode": "linux-gcc-x64",
-            "mergeConfigurations": false,
-            "recursiveIncludes": {},
-            "compilerPath": "/usr/bin/g++",
-            "browse": {
-                "limitSymbolsToIncludedHeaders": true
-            }
-        },
-        {
             "name": "Windows",
             "includePath": [
                 "${workspaceFolder}/**"
@@ -41,7 +21,27 @@
             }
         },
         {
-            "name": "POJ (C++98)",
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "cStandard": "c11",
+            "cppStandard": "c++14",
+            "intelliSenseMode": "linux-gcc-x64",
+            "mergeConfigurations": false,
+            "recursiveIncludes": {},
+            "compilerPath": "/usr/bin/g++",
+            "browse": {
+                "limitSymbolsToIncludedHeaders": true
+            }
+        },
+        {
+            "name": "POJ (C++98) for Windows",
             "defines": [
                 "_DEBUG",
                 "UNICODE",
@@ -58,9 +58,46 @@
             }
         },
         {
-            "name": "AtCoder (C++23)",
+            "name": "POJ (C++98) for Linux",
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "cStandard": "c99",
+            "cppStandard": "c++98",
+            "intelliSenseMode": "linux-gcc-x64",
+            "compilerPath": "/usr/bin/g++",
+            "mergeConfigurations": false,
+            "recursiveIncludes": {},
+            "browse": {
+                "limitSymbolsToIncludedHeaders": true
+            }
+        },
+        {
+            "name": "AtCoder (C++23) for Windows",
             "includePath": [
-                "/workspaces/codes-of-pc2/**"
+                "${workspaceFolder}/**"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "cStandard": "c17",
+            "cppStandard": "c++20",
+            "intelliSenseMode": "windows-gcc-x64",
+            "compilerPath": "C:/Program Files/MinGW64/bin/g++.exe",
+            "mergeConfigurations": false,
+            "recursiveIncludes": {},
+            "browse": {
+                "limitSymbolsToIncludedHeaders": true
+            }
+        },
+        {
+            "name": "AtCoder (C++23) for Linux",
+            "includePath": [
+                "${workspaceFolder}/**"
             ],
             "defines": [
                 "_DEBUG",
@@ -69,8 +106,8 @@
             ],
             "cStandard": "c23",
             "cppStandard": "c++23",
-            "intelliSenseMode": "windows-gcc-x64",
-            "compilerPath": "\"C:\\Program Files (x86)\\Dev-Cpp\\MinGW64\\bin\\g++.exe\"",
+            "intelliSenseMode": "linux-gcc-x64",
+            "compilerPath": "/usr/bin/g++",
             "mergeConfigurations": false,
             "recursiveIncludes": {},
             "browse": {
@@ -78,7 +115,7 @@
             }
         },
         {
-            "name": "Normal (C++14)",
+            "name": "Normal (C++14) for Windows",
             "includePath": [
                 "${workspaceFolder}/**"
             ],
@@ -98,15 +135,46 @@
             }
         },
         {
-            "name": "Codeforces (C++17)",
+            "name": "Normal (C++14) for Linux",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "cStandard": "c11",
+            "cppStandard": "c++14",
+            "intelliSenseMode": "linux-gcc-x64",
+            "compilerPath": "/usr/bin/g++",
+            "mergeConfigurations": false,
+            "recursiveIncludes": {},
+            "browse": {
+                "limitSymbolsToIncludedHeaders": true
+            }
+        },
+        {
+            "name": "Codeforces (C++17) for Windows",
             "includePath": [
                 "${workspaceFolder}/**"
             ],
             "defines": [],
             "compilerPath": "\"C:\\Program Files (x86)\\Dev-Cpp\\MinGW64\\bin\\g++.exe\"",
             "cStandard": "c17",
-            "cppStandard": "gnu++17",
+            "cppStandard": "c++17",
             "intelliSenseMode": "windows-gcc-x64"
+        },
+        {
+            "name": "Codeforces (C++17) for Linux",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/g++",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "linux-gcc-x64"
         }
     ],
     "version": 4

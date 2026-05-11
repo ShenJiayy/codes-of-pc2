@@ -25,7 +25,6 @@ signed main() {
                             dp[i][x1][x2] = max(dp[i][x1][x2], dp[i - 1][x1 - s1][x2 - s2] + add);
                         }
                     }
-    
     int ans = dp[n + m][n][n];
     cout << ans;
     return 0;

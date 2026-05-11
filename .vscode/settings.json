@@ -1,3 +1,4 @@
 {
-    "C_Cpp.default.compilerPath": "C:/Program Files (x86)/Dev-Cpp/MinGW64/bing++.exe"
+    "C_Cpp.default.compilerPath": "C:/Program Files (x86)/Dev-Cpp/MinGW64/bing++.exe",
+    "workbench.browser.dataStorage": "workspace"
 }
