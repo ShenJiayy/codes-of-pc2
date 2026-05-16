@@ -15,7 +15,7 @@
             "intelliSenseMode": "windows-gcc-x64",
             "mergeConfigurations": false,
             "recursiveIncludes": {},
-            "compilerPath": "\"C:\\Program Files (x86)\\Dev-Cpp\\MinGW64\\bin\\g++.exe\"",
+            "compilerPath": "\"C:\\Program Files (x86)\\MinGW64\\bin\\g++.exe\"",
             "browse": {
                 "limitSymbolsToIncludedHeaders": true
             }
@@ -50,7 +50,7 @@
             "cStandard": "c99",
             "cppStandard": "c++98",
             "intelliSenseMode": "windows-gcc-x64",
-            "compilerPath": "\"C:\\Program Files (x86)\\Dev-Cpp\\MinGW64\\bin\\g++.exe\"",
+            "compilerPath": "\"C:\\Program Files\\MinGW64\\bin\\g++.exe\"",
             "mergeConfigurations": false,
             "recursiveIncludes": {},
             "browse": {
@@ -85,7 +85,7 @@
                 "_UNICODE"
             ],
             "cStandard": "c17",
-            "cppStandard": "c++20",
+            "cppStandard": "c++23",
             "intelliSenseMode": "windows-gcc-x64",
             "compilerPath": "C:/Program Files/MinGW64/bin/g++.exe",
             "mergeConfigurations": false,
@@ -127,7 +127,7 @@
             "cStandard": "c11",
             "cppStandard": "c++14",
             "intelliSenseMode": "windows-gcc-x64",
-            "compilerPath": "\"C:\\Program Files (x86)\\Dev-Cpp\\MinGW64\\bin\\g++.exe\"",
+            "compilerPath": "C:/Program Files/MinGW64/bin/g++.exe",
             "mergeConfigurations": false,
             "recursiveIncludes": {},
             "browse": {
@@ -160,7 +160,7 @@
                 "${workspaceFolder}/**"
             ],
             "defines": [],
-            "compilerPath": "\"C:\\Program Files (x86)\\Dev-Cpp\\MinGW64\\bin\\g++.exe\"",
+            "compilerPath": "C:/Program Files/MinGW64/bin/g++.exe",
             "cStandard": "c17",
             "cppStandard": "c++17",
             "intelliSenseMode": "windows-gcc-x64"

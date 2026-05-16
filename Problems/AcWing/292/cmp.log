@@ -1,0 +1,9 @@
+Compare Dictory A: answer
+Compare Dictory B: debug
+[Content neq] answer\cnt1.csv VS debug\.\cnt1.csv
+[Content neq] answer\dp\1.csv VS debug\dp\1.csv
+[Content neq] answer\dp\2.csv VS debug\dp\2.csv
+[Content neq] answer\dp\3.csv VS debug\dp\3.csv
+[Content neq] answer\dp\4.csv VS debug\dp\4.csv
+[Content neq] answer\dp\5.csv VS debug\dp\5.csv
+[Exist only B] debug\validS.csv
