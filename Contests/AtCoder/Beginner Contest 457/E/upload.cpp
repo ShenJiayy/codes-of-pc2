@@ -3,10 +3,10 @@ using namespace std;
 #define int long long
 const int N = 2e5;
 vector<int> st[N + 5], ed[N + 5];
+struct Node {
+    int l, r;
+} a[N + 5];
 bool solve(int s, int t) {
-    int fstmax = upper_bound(st[s].begin(), st[s].end(), t) - st[s].begin() - 1;
-    int scdmin = lower_bound(ed[t].begin(), ed[t].end(), s) - ed[t].begin();
-    // 第一个可选1~fstmax 第二个可选scdmin~n
     
 }
 signed main() {
@@ -27,7 +27,7 @@ signed main() {
     while (T --) {
         int s, t;
         cin >> s >> t;
-        cout << solve(s, t) ? "Yes\n" : "No\n";
+        solve(s, t);
     }
     return 0;
 }
