@@ -30,6 +30,9 @@ void tarjan(int id) {
 		}
 	}
 }
+void dfs(int id) {
+
+}
 signed main() {
 	int n, m;
 	cin >> n >> m;
@@ -42,5 +45,7 @@ signed main() {
 		g[v].push_back(u);
 	}
 	tarjan(1);
+	for (int i = 1; i <= n; i ++)
+		
 	return 0;
 }
