@@ -17,7 +17,7 @@ void init() {
         inv[i] = inv[i + 1] * (i + 1) % mod;
 }
 int getc(int n, int m) {
-    if (n - m < 0) return 0;
+    if (m > n || m < 0) return 0;
     return mul[n] * inv[m] % mod * inv[n - m] % mod;
 }
 signed main() {
