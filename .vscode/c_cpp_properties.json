@@ -75,7 +75,7 @@
             }
         },
         {
-            "name": "AtCoder (C++23) for Windows",
+            "name": "UVA (C++11) for Windows",
             "includePath": [
                 "${workspaceFolder}/**"
             ],
@@ -84,8 +84,8 @@
                 "UNICODE",
                 "_UNICODE"
             ],
-            "cStandard": "c17",
-            "cppStandard": "c++23",
+            "cStandard": "c11",
+            "cppStandard": "c++11",
             "intelliSenseMode": "windows-gcc-x64",
             "compilerPath": "C:/Program Files/MinGW64/bin/g++.exe",
             "mergeConfigurations": false,
@@ -95,7 +95,7 @@
             }
         },
         {
-            "name": "AtCoder (C++23) for Linux",
+            "name": "UVA (C++11) for Linux",
             "includePath": [
                 "${workspaceFolder}/**"
             ],
@@ -104,8 +104,8 @@
                 "UNICODE",
                 "_UNICODE"
             ],
-            "cStandard": "c23",
-            "cppStandard": "c++23",
+            "cStandard": "c11",
+            "cppStandard": "c++11",
             "intelliSenseMode": "linux-gcc-x64",
             "compilerPath": "/usr/bin/g++",
             "mergeConfigurations": false,
@@ -175,6 +175,46 @@
             "cStandard": "c17",
             "cppStandard": "c++17",
             "intelliSenseMode": "linux-gcc-x64"
+        },
+        {
+            "name": "AtCoder (C++23) for Windows",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "cStandard": "c17",
+            "cppStandard": "c++23",
+            "intelliSenseMode": "windows-gcc-x64",
+            "compilerPath": "C:/Program Files/MinGW64/bin/g++.exe",
+            "mergeConfigurations": false,
+            "recursiveIncludes": {},
+            "browse": {
+                "limitSymbolsToIncludedHeaders": true
+            }
+        },
+        {
+            "name": "AtCoder (C++23) for Linux",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "cStandard": "c23",
+            "cppStandard": "c++23",
+            "intelliSenseMode": "linux-gcc-x64",
+            "compilerPath": "/usr/bin/g++",
+            "mergeConfigurations": false,
+            "recursiveIncludes": {},
+            "browse": {
+                "limitSymbolsToIncludedHeaders": true
+            }
         }
     ],
     "version": 4
