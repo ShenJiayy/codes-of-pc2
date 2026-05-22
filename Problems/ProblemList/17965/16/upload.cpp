@@ -1,6 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define int long long
+const int N = 1e6, mod = 1e9 + 7;
+int c[N + 5];
 int fp(int a, int b, int p) {
     int ret = 1;
     for (; b; b >>= 1, a = a * a % p)
@@ -17,17 +19,12 @@ int getc(int n, int m, int p) {
         m2 *= (i + 1), m2 %= p;
     return m1 * fp(m2, p - 2, p) % p;
 }
-int lucas(int n, int m, int p) {
-    if (m == 0) return 1;
-    return lucas(n / p, m / p, p) * getc(n % p, m % p, p) % p;
-}
 signed main() {
-    int T;
-    cin >> T;
-    while (T --) {
-        int n, m, p;
-        cin >> n >> m >> p;
-        cout << lucas(m + n, n, p) << endl;
-    }
+	int n, m;
+    cin >> n >> m;
+    for (int i = 1; i <= m; i ++)
+        cin >> c[i], n -= c[i];
+    // 答案：C(n - 1, m - 1)
+    cout << getc(n - 1, m - 1, mod);
     return 0;
 }

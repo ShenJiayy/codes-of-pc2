@@ -1,0 +1,3 @@
+ans +=   C(a, i) * C(b + d - m + i, i) % mod * fct(i) % mod
+               * C(c, m - i) % mod * C(d, m - i) % mod * fct(m - i) 
+               % mod, 

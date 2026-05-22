@@ -1,0 +1,33 @@
+066f852a Problems/Luogu/P6787/random.cpp          (ShenJiayy         2026-03-28 09:22:13 +0800  1) #include <bits/stdc++.h>
+066f852a Problems/Luogu/P6787/random.cpp          (ShenJiayy         2026-03-28 09:22:13 +0800  2) using namespace std;
+b0d63339 Problems/ProblemList/17965/12/upload.cpp (ShenJiayy         2026-05-21 13:40:13 +0800  3) #define int long long
+00000000 Problems/ProblemList/17965/12/upload.cpp (Not Committed Yet 2026-05-21 14:37:13 +0800  4) int fp(int a, int b, int p) {
+00000000 Problems/ProblemList/17965/12/upload.cpp (Not Committed Yet 2026-05-21 14:37:13 +0800  5)     int ret = 1;
+00000000 Problems/ProblemList/17965/12/upload.cpp (Not Committed Yet 2026-05-21 14:37:13 +0800  6)     for (; b; b >>= 1, a = a * a % p)
+00000000 Problems/ProblemList/17965/12/upload.cpp (Not Committed Yet 2026-05-21 14:37:13 +0800  7)         if (b & 1)
+00000000 Problems/ProblemList/17965/12/upload.cpp (Not Committed Yet 2026-05-21 14:37:13 +0800  8)             ret = ret * a % p;
+00000000 Problems/ProblemList/17965/12/upload.cpp (Not Committed Yet 2026-05-21 14:37:13 +0800  9)     return ret;
+00000000 Problems/ProblemList/17965/12/upload.cpp (Not Committed Yet 2026-05-21 14:37:13 +0800 10) }
+00000000 Problems/ProblemList/17965/12/upload.cpp (Not Committed Yet 2026-05-21 14:37:13 +0800 11) int getc(int n, int m, int p) {
+00000000 Problems/ProblemList/17965/12/upload.cpp (Not Committed Yet 2026-05-21 14:37:13 +0800 12)     if (n < m) return 0;
+00000000 Problems/ProblemList/17965/12/upload.cpp (Not Committed Yet 2026-05-21 14:37:13 +0800 13)     if (m > n - m) m = n - m;
+00000000 Problems/ProblemList/17965/12/upload.cpp (Not Committed Yet 2026-05-21 14:37:13 +0800 14)     int m1 = 1, m2 = 1;
+00000000 Problems/ProblemList/17965/12/upload.cpp (Not Committed Yet 2026-05-21 14:37:13 +0800 15)     for (int i = 0; i < m; i ++)
+00000000 Problems/ProblemList/17965/12/upload.cpp (Not Committed Yet 2026-05-21 14:37:13 +0800 16)         m1 *= (n - i), m1 %= p,
+00000000 Problems/ProblemList/17965/12/upload.cpp (Not Committed Yet 2026-05-21 14:37:13 +0800 17)         m2 *= (i + 1), m2 %= p;
+00000000 Problems/ProblemList/17965/12/upload.cpp (Not Committed Yet 2026-05-21 14:37:13 +0800 18)     return m1 * fp(m2, p - 2, p) % p;
+00000000 Problems/ProblemList/17965/12/upload.cpp (Not Committed Yet 2026-05-21 14:37:13 +0800 19) }
+00000000 Problems/ProblemList/17965/12/upload.cpp (Not Committed Yet 2026-05-21 14:37:13 +0800 20) int lucas(int n, int m, int p) {
+00000000 Problems/ProblemList/17965/12/upload.cpp (Not Committed Yet 2026-05-21 14:37:13 +0800 21)     if (m == 0) return 1;
+00000000 Problems/ProblemList/17965/12/upload.cpp (Not Committed Yet 2026-05-21 14:37:13 +0800 22)     return lucas(n / p, m / p, p) * getc(n % p, m % p, p) % p;
+00000000 Problems/ProblemList/17965/12/upload.cpp (Not Committed Yet 2026-05-21 14:37:13 +0800 23) }
+066f852a Problems/Luogu/P6787/random.cpp          (ShenJiayy         2026-03-28 09:22:13 +0800 24) signed main() {
+00000000 Problems/ProblemList/17965/12/upload.cpp (Not Committed Yet 2026-05-21 14:37:13 +0800 25)     int T;
+00000000 Problems/ProblemList/17965/12/upload.cpp (Not Committed Yet 2026-05-21 14:37:13 +0800 26)     cin >> T;
+00000000 Problems/ProblemList/17965/12/upload.cpp (Not Committed Yet 2026-05-21 14:37:13 +0800 27)     while (T --) {
+00000000 Problems/ProblemList/17965/12/upload.cpp (Not Committed Yet 2026-05-21 14:37:13 +0800 28)         int n, m, p;
+00000000 Problems/ProblemList/17965/12/upload.cpp (Not Committed Yet 2026-05-21 14:37:13 +0800 29)         cin >> n >> m >> p;
+00000000 Problems/ProblemList/17965/12/upload.cpp (Not Committed Yet 2026-05-21 14:37:13 +0800 30)         cout << lucas(m + n, n, p) << endl;
+00000000 Problems/ProblemList/17965/12/upload.cpp (Not Committed Yet 2026-05-21 14:37:13 +0800 31)     }
+066f852a Problems/Luogu/P6787/random.cpp          (ShenJiayy         2026-03-28 09:22:13 +0800 32)     return 0;
+b0d63339 Problems/ProblemList/17965/12/upload.cpp (ShenJiayy         2026-05-21 13:40:13 +0800 33) }
