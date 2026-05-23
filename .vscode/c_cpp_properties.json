@@ -115,7 +115,7 @@
             }
         },
         {
-            "name": "Normal (C++14) for Windows",
+            "name": "Normal (C++14) for Windows on Home PC",
             "includePath": [
                 "${workspaceFolder}/**"
             ],
@@ -128,6 +128,26 @@
             "cppStandard": "c++14",
             "intelliSenseMode": "windows-gcc-x64",
             "compilerPath": "C:/Program Files/MinGW64/bin/g++.exe",
+            "mergeConfigurations": false,
+            "recursiveIncludes": {},
+            "browse": {
+                "limitSymbolsToIncludedHeaders": true
+            }
+        },
+        {
+            "name": "Normal (C++14) for Windows on Local PC",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "cStandard": "c11",
+            "cppStandard": "c++14",
+            "intelliSenseMode": "windows-gcc-x64",
+            "compilerPath": "D:/MinGW64/bin/g++.exe",
             "mergeConfigurations": false,
             "recursiveIncludes": {},
             "browse": {
