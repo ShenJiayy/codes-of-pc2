@@ -206,8 +206,7 @@
                 "UNICODE",
                 "_UNICODE"
             ],
-            "cStandard": "c17",
-            "cppStandard": "c++23",
+            "cppStandard": "gnu++23",
             "intelliSenseMode": "windows-gcc-x64",
             "compilerPath": "C:/Program Files/MinGW64/bin/g++.exe",
             "mergeConfigurations": false,
@@ -226,8 +225,7 @@
                 "UNICODE",
                 "_UNICODE"
             ],
-            "cStandard": "c23",
-            "cppStandard": "c++23",
+            "cppStandard": "gnu++23",
             "intelliSenseMode": "linux-gcc-x64",
             "compilerPath": "/usr/bin/g++",
             "mergeConfigurations": false,
