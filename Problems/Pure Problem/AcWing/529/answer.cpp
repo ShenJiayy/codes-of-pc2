@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define int long long
+// #define int long long
 const int INF = 0x3f3f3f3f;
 const int N = 12;
 int v[N + 5][N + 5], cost[(1 << N) + 5][(1 << N) + 5];
@@ -32,7 +32,7 @@ int solve(int x, int n) {
         for (int j = 1; j < (1 << n); j ++) {
             for (int k = j; k; k = (k - 1) & j) {
                 if (k == j) continue;
-                dp[i][j] = min(dp[i][j], dp[i - 1][k] + 1ll * i * cost[k][j]);
+                dp[i][j] = min(dp[i][j], dp[i - 1][k] + i * cost[k][j]);
             }
             if (j == (1 << n) - 1) ans = min(dp[i][j], ans);
         }
@@ -43,7 +43,7 @@ signed main() {
         freopen("in.in", "r", stdin);
     #endif
     int n, m;
-    scanf("%lld%lld", &n, &m);
+    scanf("%d%d", &n, &m);
     if (n == 1) {
         printf("0");
         return 0;
@@ -53,7 +53,7 @@ signed main() {
             v[i][j] = INF;
     for (int i = 1; i <= m; i ++) {
         int a, b, c;
-        scanf("%lld%lld%lld", &a, &b, &c);
+        scanf("%d%d%d", &a, &b, &c);
         a --, b --;
         v[a][b] = v[b][a] = min(v[a][b], c);
     }
@@ -67,6 +67,6 @@ signed main() {
     // for (int i = 0; i < n; i ++)
     //     for (int j = 0; j < (1 << n); j ++)
     //         cout << dp[i][j] << " ";
-    printf("%lld", ans);
+    printf("%d", ans);
     return 0;
 }
