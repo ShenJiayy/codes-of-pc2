@@ -8,10 +8,11 @@ signed main() {
     cin >> n;
     for (int i = 1; i <= n; i ++)
         cin >> p[i];
-    dp[1][1] = p[1], dp[1][0] = 1 - p[1];
-    for (int i = 2; i <= n; i ++)
-        for (int j = 0; j <= i; j ++)
-            dp[i][j] = dp[i - 1][j] * (1 - p[i]) + dp[i - 1][j - 1] * p[i];
+    dp[0][0] = 1;
+    for (int i = 1; i <= n; i ++)
+        for (int j = 1; j <= n; j ++)
+            dp[i + 1][j] += dp[i][j] * (1 - p[i]),
+            dp[i + 1][j + 1] += dp[i][j] * p[i];
     double sum = 0;
     for (int i = n / 2 + 1; i <= n; i ++)
         sum += dp[n][i];
