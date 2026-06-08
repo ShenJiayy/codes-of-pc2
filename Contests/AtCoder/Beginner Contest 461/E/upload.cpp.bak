@@ -1,0 +1,29 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+const int N = 1e4;
+bool a[N + 5][N + 5];
+signed main() {
+	int n, T, cnt = 0;
+    cin >> n >> T;
+    while (T --) {
+        int opt, val;
+        cin >> opt >> val;
+        if (opt == 1) {
+            cnt += n;
+            for (int i = 1; i <= n; i ++) {
+                if (a[val][i] == 1) cnt --;
+                else a[val][i] = 1;
+            }
+        }
+        else {
+            cnt -= n;
+            for (int i = 1; i <= n; i ++) {
+                if (a[i][val] == 0) cnt ++;
+                else a[i][val] = 0;
+            }
+        }
+        cout << cnt << endl;
+    }
+    return 0;
+}

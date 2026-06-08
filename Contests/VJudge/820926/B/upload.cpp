@@ -4,8 +4,14 @@ using namespace std;
 signed main() {
 	int n, k;
     cin >> n >> k;
-    double ans = (n - k + 1) * 1.0 / k;
-    for (int i = 1; i <= n; i ++) 
-        
+    double ans = 0;
+    for (int i = 1; i <= n; i ++) {
+        int bi = i;
+        double px = 1;
+        while (bi < k)
+            px /= 2, bi *= 2;
+        ans += px / n;
+    }
+    printf("%.10lf", ans);
     return 0;
 }
