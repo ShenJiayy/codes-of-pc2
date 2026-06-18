@@ -1,0 +1,26 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+const int N = 300, M = 1e4;
+int c[N + 5], dp[N + 5][N + 5], a[N + 5];
+signed main() {
+    int n;
+    cin >> n;
+    for (int i = 1; i <= n; i ++)
+        cin >> c[i];
+    for (int i = 1; i <= n; i ++) 
+        cin >> a[i];
+    // dp[i][j]：1~i，分了j个组
+    sort(c + 1, c + n + 1);
+    for (int i = 1; i <= n; i ++)
+        for (int j = 1; j <= n; j ++) {
+            dp[i][j] = dp[i][j - 1] + a[1];
+            for (int k = 2; k <= j; k ++)
+                dp[i][j] = max(dp[i][j], dp[i - 1][j - k] + a[k] + c[n - i + 1] - c[i]);
+        }
+    int ans = 0;
+    for (int i = 1; i <= n; i ++)
+        ans = max(ans, dp[i][n]);
+    cout << ans;
+    return 0;
+}
