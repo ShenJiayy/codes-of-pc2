@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+const int N = 2e5;
+char s[N + 5];
+int dp[N + 5], sum[N + 5][30];
+signed main() {
+	int n, cnt = 0;
+    scanf("%lld%s", &n, s + 1);
+    // n^2
+    // dp[i]表示以i结尾的满足题意的字串数
+    for (int i = 1; i <= n; i ++)
+        for (int j = 0; j < 26; j ++)
+            sum[i][j] = sum[i - 1][j] + (s[i] == 'a' + j);
+    for (int i = 1; i <= n; i ++) 
+        for (int j = i + 1; j <= n; j += 2) {
+            bool valid = 1;
+            for (int k = 0; k < 26; k ++)
+                if (sum[j][k] - sum[i - 1][k] & 1)
+                    valid = 0;
+            cnt += valid;
+        }
+    cout << cnt;
+    return 0;
+}
