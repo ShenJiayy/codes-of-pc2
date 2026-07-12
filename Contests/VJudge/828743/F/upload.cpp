@@ -10,6 +10,9 @@ signed main() {
         for (int j = 1; j <= m; j ++)
             cin >> a[i][j];
     for (int i = 1; i <= n; i ++)
-        for ()
+        for (int j = 1; j <= m; j ++)
+            for (int k = 1; 1 <= i - k && i + k <= n && 1 <= j - k && j - k <= m; k ++) {
+                
+            }
     return 0;
 }
