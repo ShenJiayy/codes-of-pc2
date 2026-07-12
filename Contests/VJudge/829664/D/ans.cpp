@@ -1,7 +1,14 @@
 #include <iostream>
 using namespace std;
 typedef long long ll;
-int C(int n, int m) {}
+ll C(ll n, ll m) {
+    ll res = 1;
+    for (ll i = 1, j = n; i <= m; i ++, j --) {
+        res = res * j / i;
+        if (res >= 2e9) return 2e9;
+    }
+    return res;
+}
 int main() {
 	ll n;
 	cin >> n;
