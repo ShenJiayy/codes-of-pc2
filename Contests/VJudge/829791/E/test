@@ -1,0 +1,4 @@
+#!/bin/bash
+g++ upload.cpp -std=c++14 -O2 -o run 1>&2 2>build.log
+time ./run 0<data.in 1>data.out 2>run.log
+diff data.out data.ans -w 1>&2 2>diff.log
