@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define int long long
-const int N = 1002;
+const int N = 1004;
 int p, q, n;
 struct Node {
 	double x, y;
@@ -29,7 +29,7 @@ void merge(int x, int y) {
 		f[ftx] = fty;
 }
 signed main() {
-	cin >> p >> q >> n;
+	cin >> q >> p >> n;
 	for (int i = 1; i <= n; i ++)
 		cin >> a[i].x >> a[i].y;
 	a[n + 1] = {0, double(p)}, a[n + 2] = {double(q), 0};
@@ -45,7 +45,7 @@ signed main() {
 		for (int i = 1; i <= curr; i ++)
 			if (dist[i].dis <= mid * mid)
 				merge(dist[i].x, dist[i].y);
-		if (find(n + 1) == find(n + 2)) // Fake Answer
+		if (find(n + 1) == find(n + 2))
 			r = mid - 1;
 		else ans = mid, l = mid + 1;
 	}
