@@ -27,7 +27,7 @@ inline pair<int, vector<Edge>> KrusKarl(int n, int m, Edge e[], int req) {
         int x = find(e[i].u), y = find(e[i].v);
         if (x == y) continue;
         f[x] = y;
-        ans += e[i].w;
+        ans = max(ans, e[i].w);
         ecnt ++;
         ne.emplace_back(e[i]);
     }
@@ -53,7 +53,7 @@ signed main() {
             e2[++ curr] = e2p[i];
     auto e2k = KrusKarl(n, curr, e2, n - 1 - k);
     vector<Edge> v;
-    cout << e1k.first + e2k.first << endl;
+    cout << max(e1k.first, e2k.first) << endl;
     for (Edge pe : e1k.second)
         v.push_back({pe.u, pe.v, pe.w, pe.id, 1});
     for (Edge pe : e2k.second)
