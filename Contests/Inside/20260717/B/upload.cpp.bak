@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define int long long
+const int mod = 1e9 + 7;
+int fp(int a, int b, int p) {
+    int ret = 1;
+    for (; b; b >>= 1, a = a * a % p)
+        if (b & 1)
+            ret = ret * a % p;
+    return ret;
+}
+signed main() {
+    int n, ans = 0;
+    cin >> n;
+    for (int k = n % 2; k < n; k += 2) {
+        // Leave: n-k
+        // Averg: (n-k)/2
+        int m = (n - k) / 2;
+        ans += fp(2, m - 1, mod);
+        ans %= mod;
+    }
+    ans ++;
+    cout << ans;
+    return 0;
+}
