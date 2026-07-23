@@ -47,11 +47,11 @@ inline void init(int n) {
     // Lne 48-57
     for (int j = 0; j <= maxm; j ++) {
         s2[0][j] = 1;
-        b2[0][j] = 0; // NL.2
+        b2[0][j] = 0;
         for (int i = 1; i <= 10000; i ++) {
             s2[i][j] = s2[i - 1][j] * c;
-            b2[i][j] |= b2[i - 1][j]; // ER.1
-            if (s2[i][j] >= phi[j]) // ER.6
+            b2[i][j] |= b2[i - 1][j]; 
+            if (s2[i][j] >= phi[j])
                 s2[i][j] %= phi[j],
                 b2[i][j] = 1;
         }
@@ -62,13 +62,13 @@ inline void init(int n) {
     for (int j = 0; j <= maxm; j ++) {
         s1[0][j] = 1;
         for (int i = 1; i <= 10000; i ++) {
-            s1[i][j] = s1[i - 1][j]; // ER.4
+            s1[i][j] = s1[i - 1][j]; 
             s1[i][j] *= s2[10000][j];
-            b1[i][j] |= b1[i - 1][j]; // ER.2
-            b1[i][j] |= b2[10000][j]; // NL.1
-            if (s1[i][j] >= phi[j]) // ER.7
+            b1[i][j] |= b1[i - 1][j]; 
+            b1[i][j] |= b2[10000][j]; 
+            if (s1[i][j] >= phi[j]) 
                 s1[i][j] %= phi[j],
-                b1[i][j] = 1; // ER.3
+                b1[i][j] = 1; 
         }
 
     }
@@ -83,7 +83,7 @@ inline void init(int n) {
                 tb[i][0][k] = 1;
             else tb[i][0][k] = 0;
         }
-        for (int j = 1; j <= maxm; j ++) // ER.5
+        for (int j = 1; j <= maxm; j ++)
             for (int k = 0; k < maxm; k ++) {
                 ts[i][j][k] = s1[ts[i][j - 1][k + 1] / 10000][k] * s2[ts[i][j - 1][k + 1] % 10000][k];
                 tb[i][j][k] = b1[ts[i][j - 1][k + 1] / 10000][k] | b2[ts[i][j - 1][k + 1] % 10000][k];
@@ -139,7 +139,7 @@ struct SegTree {
         tg[pt] = min(tg[pt * 2], tg[pt * 2 + 1]);
     }
     void updateBlock(int ql, int qr, int pt, int l, int r) {
-        if (tg[pt] >= maxm) return ; // ER.8
+        if (tg[pt] >= maxm) return ; 
         if (l == r) {
             tg[pt] ++;
             s[pt] = ts[l][tg[pt]][0] % p;
@@ -157,9 +157,9 @@ struct SegTree {
             return s[pt];
         int res = 0, mid = l + r >> 1;
         if (ql <= mid)
-            res += queryBlock(ql, qr, pt * 2, l, mid) % p, res %= p; // ER.9
+            res += queryBlock(ql, qr, pt * 2, l, mid) % p, res %= p; 
         if (qr > mid)
-            res += queryBlock(ql, qr, pt * 2 + 1, mid + 1, r) % p, res %= p; // ER.10
+            res += queryBlock(ql, qr, pt * 2 + 1, mid + 1, r) % p, res %= p;
         return res;
     }
 };
