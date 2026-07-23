@@ -2,10 +2,7 @@
 using namespace std;
 #define int long long
 const int N = 1e5;
-struct Query {
-	int opt, l, r, d;
-} qs[N + 5];
-int a[N + 5], s[(N << 2) + 5];
+int s[(N << 2) + 5];
 int tag[(N << 2) + 5];
 inline int base(int l, int r) {
 	return (r - l + 1) * (r + l) / 2;
@@ -18,17 +15,6 @@ inline void pushdown(int id, int l, int r) {
     tag[rgt] += tag[id];
     s[rgt] += tag[id] * (r - mid);
     tag[id] = 0;
-}
-void buildAll(int id, int l, int r) {
-    if (l == r) {
-        s[id] = a[l];
-		return ;
-	}
-    pushdown(id, l, r);
-	int mid = l + r >> 1;
-	buildAll(id * 2, l, mid);
-	buildAll(id * 2 + 1, mid + 1, r);
-	s[id] = s[id * 2] + s[id * 2 + 1];
 }
 void updateOne(int id, int l, int r, int p, int d) {
     if (l == r) {
@@ -71,23 +57,16 @@ void updateBlock(int id, int l, int r, int ql, int qr, int qd) {
 signed main() {
     int n, T;
     cin >> n >> T;
-	set<int> st;
-	map<int, int> mmp;
-	for (int t = 1; t <= T; t ++) {
-		cin >> qs[t].opt >> qs[t].l >> qs[t].r;
-		st.insert(qs[t].l), st.insert(qs[t].r);
-		if (qs[t].opt == 1)
-			cin >> qs[t].d; 
-	}
-	int curr = 0;
-	for (int val : st)
-		mmp[val] = ++ curr;
-    buildAll(1, 1, curr);
-    for (int t = 1; t <= T; t ++) {
-		if (qs[t].opt == 1) 
-			updateBlock(1, 1, curr, mmp[qs[t].l], mmp[qs[t].r], qs[t].d);
-		else
-			cout << base(qs[t].l, qs[t].r) + queryBlock(1, 1, curr, mmp[qs[t].l], mmp[qs[t].r]) << endl;
-	}
+    while (T --) {
+        int opt, l, r;
+        cin >> opt >> l >> r;
+        if (opt == 1) {
+			int d;
+			cin >> d;
+            updateBlock(1, 1, n, l, r, d);
+		}
+        else
+            cout << base(l, r) + queryBlock(1, 1, n, l, r) << endl;
+    }
     return 0;
 }
