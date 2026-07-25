@@ -3,6 +3,6 @@ while True:
     if s == "exit":
         break
     try:
-        exec(s)
+        print(eval(s))
     except Exception as e:
         print(e)
