@@ -3,7 +3,6 @@ if [ ! -e "upload.cpp" ]; then
     echo -e "\033[31mSource File not Found!\033[0m"
     exit 1
 fi
-rm run.exe 2>/dev/null 1>&2
 g++ upload.cpp -std=c++14 -g -o run
 if [ $? -ne 0 ]; then
     echo -e "\033[31mBuild Error!\033[0m"
@@ -13,7 +12,7 @@ if [ ! -e "data.in" ]; then
     echo -e "\033[31mInput File not Found!\033[0m"
     exit 1
 fi
-procgov --cpurate=20 --maxmem=128M --timeout=2000 --recursive bash -c "./run 0<data.in 1>data.out 2>run.log"
+procgov --cpurate=20 --maxmem=128M --timeout=2000 --recursive bash -c './run 0<data.in 1>data.out 2>run.log'
 code=$?
 taskkill -f -im run.exe 1>/dev/null 2>&1
 if [ $code -eq 3 ]; then
@@ -24,16 +23,7 @@ if [ $code -eq 127 ]; then
     echo -e "\033[31mTime Limit Exceeded!\033[0m"
     exit 1
 fi
-if [ $code -eq 126 ]; then
-    echo -e "\033[36mUnknown Error!\033[0m"
-    timeout 5 ./run 0<data.in 1>data.out 2>run.log
-    code=$?
-    taskkill -f -im run.exe 1>/dev/null 2>&1
-    if [ $code -eq 127 ]; then
-        echo -e "\033[31mTime Limit Exceeded!\033[0m"
-        exit 1
-    fi
-elif [ $code -ne 0 ]; then
+if [ $code -ne 0 ]; then
     echo -e "\033[35mRuntime Error!\033[0m"
     echo Exit Code: $code
     exit 1
