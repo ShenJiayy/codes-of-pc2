@@ -1,0 +1,42 @@
+#!/bin/bash
+if [ ! -e "upload.cpp" ]; then
+    echo -e "\033[31mSource File not Found!\033[0m"
+    exit 1
+fi
+g++ upload.cpp -std=c++14 -g -o run
+if [ $? -ne 0 ]; then
+    echo -e "\033[31mBuild Error!\033[0m"
+    exit 1
+fi
+if [ ! -e "data.in" ]; then
+    echo -e "\033[31mInput File not Found!\033[0m"
+    exit 1
+fi
+procgov --maxmem=128M --timeout=2000 --recursive bash -c './run 0<data.in 1>data.out 2>run.log'
+code=$?
+taskkill -f -im run.exe 1>/dev/null 2>&1
+if [ $code -eq 3 ]; then
+    echo -e "\033[31mMemory Limit Exceeded!\033[0m"
+    exit 1
+fi
+if [ $code -eq 127 ]; then
+    echo -e "\033[31mTime Limit Exceeded!\033[0m"
+    exit 1
+fi
+if [ $code -ne 0 ]; then
+    echo -e "\033[35mRuntime Error!\033[0m"
+    echo Exit Code: $code
+    exit 1
+fi
+rm run.log
+if [ ! -e "data.ans" ]; then
+    echo -e "\033[37mAnswer File not Found!\033[0m"
+    exit 0
+fi
+diff data.out data.ans -w 1>/dev/null 2>&1
+if [ $? -ne 0 ]; then
+    echo -e "\033[31mWrong Answer!\033[0m"
+    exit 1
+fi
+rm data.out
+echo -e "\033[32mAnswer Correct!\033[0m"
