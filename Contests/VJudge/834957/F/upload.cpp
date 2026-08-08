@@ -17,12 +17,16 @@ void merge(int id) {
     else 
         t[id].validate = 1;
 }
+void modify(int l, int id) {
+    t[id].mod = t[id].val = 0;
+    for (int i = 0; i < n; i ++)
+        t[id].mod |= (inp[l][i] != '?') << i,
+        t[id].val |= (inp[l][i] == '1') << i;
+    t[id].validate = 1;
+}
 void build(int id, int l, int r) {
     if (l == r) {
-        for (int i = 0; i < n; i ++)
-            t[id].mod |= (inp[l][i] == '?') << i,
-            t[id].val |= (inp[l][i] == '1') << i;
-        t[id].validate = 1;
+        modify(l, id);
         return ;
     }
     int lft = id << 1, rgt = id << 1 | 1, mid = l + r >> 1;
@@ -32,10 +36,7 @@ void build(int id, int l, int r) {
 }
 void update(int id, int l, int r, int p) {
     if (l == r) {
-        for (int i = 0; i < n; i ++)
-            t[id].mod |= (inp[l][i] != '?') << i,
-            t[id].val |= (inp[l][i] == '1') << i;
-        t[id].validate = 1;
+        modify(l, id);
         return ;
     }
     int lft = id << 1, rgt = id << 1 | 1, mid = l + r >> 1;
@@ -56,7 +57,7 @@ Node operator +(Node x, Node y) {
     return ans;
 }
 Node query(int id, int l, int r, int ql, int qr) {
-    if (l == r) 
+    if (ql <= l && r <= qr) 
         return t[id];
     int lft = id << 1, rgt = id << 1 | 1, mid = l + r >> 1;
     if (ql <= mid && mid < qr)
