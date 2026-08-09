@@ -103,7 +103,7 @@ pair<int, int> solve(int n, int x, int y) {
 		using namespace lca;
 		return {dep[x] - dep[lc], dep[y] - dep[lc]};
 	}
-	
+	return {1048576, 1048576};
 }
 int main() {
 	int n, T;
@@ -117,6 +117,7 @@ int main() {
 	}
 	tps::solve(n);
 	lca::init(n);
+	bel::solve(n);
 	while (T --) {
 		int x, y;
 		cin >> x >> y;
