@@ -1,0 +1,7 @@
+ERROR: System.ComponentModel.Win32Exception (1455): CreateProcess failed.
+   at ProcessGovernor.Library.Win32ProcessModule.CreateProcessWithJobAssigned(String, ProcessCreationFlags, Win32ProcessSettings, SafeHandle, SafeHandle&) + 0x335
+   at ProcessGovernor.Library.Win32ProcessModule.StartProcessInJob(String, ProcessCreationFlags, Win32ProcessSettings, SafeHandle) + 0x71
+   at ProcessGovernor.Library.ProcessGovernorInstance.StartProcessInJob(String, ProcessCreationFlags, RunningJobId) + 0x9a
+   at ProcessGovernor.Program.<Execute>d__9.MoveNext() + 0x52a
+--- End of stack trace from previous location ---
+   at ProcessGovernor.Program.<Main>d__2.MoveNext() + 0x1a4
