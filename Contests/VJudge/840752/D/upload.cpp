@@ -46,7 +46,7 @@ signed main() {
 	while (T --) {
 		int x, y, z, u;
 		cin >> x >> y >> z >> u;
-		int a = x * (m - 1) + y - 1, b = z * (m - 1) + u - 1, ans = 64;
+		int a = (x - 1) * m + y, b = (z - 1) * m + u, ans = 5;
 		for (int st = 1; st < 16; st ++)
 			if (find(a, f[st]) == find(b, f[st]))
 				ans = min(ans, msk[st]);
