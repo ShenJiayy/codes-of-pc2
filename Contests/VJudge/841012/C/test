@@ -1,0 +1,10 @@
+#!/bin/bash
+echo "$(pwd)/run 0<$(pwd)/data.in 1>$(pwd)/data.out 2>$(pwd)/data.log" > scripts.sh
+g++ upload.cpp -std=c++14 -static -o run
+systemd-run -p MemoryMax=125M -p MemorySwapMax=0 -p CPUQuota=100% -p TimeoutStopSec=0.999999 \
+    --user -t --wait --collect \
+    bash $(pwd)/scripts.sh
+echo Exit Code: $?
+echo
+diff -w data.out data.ans 
+echo Difference: $?

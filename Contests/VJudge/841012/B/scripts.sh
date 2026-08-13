@@ -1,0 +1,1 @@
+/home/ubuntu/codes-of-pc2/Contests/VJudge/841012/B/run 0</home/ubuntu/codes-of-pc2/Contests/VJudge/841012/B/data.in 1>/home/ubuntu/codes-of-pc2/Contests/VJudge/841012/B/data.out 2>/home/ubuntu/codes-of-pc2/Contests/VJudge/841012/B/data.log
