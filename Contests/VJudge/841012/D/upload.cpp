@@ -6,9 +6,9 @@ struct Node {
     int x, y;
 } p[N + 5];
 bool cmp(Node x, Node y) {
-    if (x.x != y.x)
-        return x.x > y.x;
-    return x.y > y.y;
+    if (x.y != y.y)
+        return x.y > y.y;
+    return x.x > y.x;
 }
 signed main() {
 	int n;
@@ -17,10 +17,10 @@ signed main() {
         int x, e;
         cin >> x >> e;
         p[i].x = e - x;
-        p[i].y = x + e;
+        p[i].y = e + x;
     }
     sort(p + 1, p + n + 1, cmp);
-    int ans = 0, maxn = 9e18;
+    int ans = 0, maxn = -9e18;
     for (int i = 1; i <= n; i ++) {
         if (p[i].x > maxn)
             ans ++;
