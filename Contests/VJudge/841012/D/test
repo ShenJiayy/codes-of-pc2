@@ -1,0 +1,9 @@
+#!/bin/bash
+set -e
+echo "$(pwd)/run 0<$(pwd)/data.in 1>$(pwd)/data.out 2>$(pwd)/data.log" > runner
+chmod +x runner
+g++ upload.cpp -std=c++14 -static -o run
+timeout 2 systemd-run -p MemoryMax=125M -p MemorySwapMax=0 -p CPUQuota=100% --user -t --wait $(pwd)/runner
+rm runner
+echo
+diff -w data.out data.ans 
