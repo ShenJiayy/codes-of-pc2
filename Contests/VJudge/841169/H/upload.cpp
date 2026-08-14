@@ -19,6 +19,7 @@ signed main() {
         cin >> a[i].v, a[i].id = i;
     sort(a + 1, a + n + 1, cmp);
     memset(dis, 0x3f, sizeof dis);
+    memset(ans, 0x3f, sizeof ans);
     for (int i = 1; i <= n; i ++)
         dis[i][i] = 0;
     for (int i = 1; i <= m; i ++) {
