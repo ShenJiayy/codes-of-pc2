@@ -10,7 +10,7 @@ signed main() {
 	int n, m;
 	cin >> n >> m;
 	for (int i = 1; i <= n; i ++) 
-		cin >> a[i].p, a[i + n + 1].p = a[i].p;
+		cin >> a[i].p, a[i + n + 1].p = a[i].p + m;
 	for (int i = 1; i <= n; i ++) 
 		cin >> a[i].t, a[i + n + 1].t = a[i].t;
 	a[n + 1] = {m, (int)-1e18};
