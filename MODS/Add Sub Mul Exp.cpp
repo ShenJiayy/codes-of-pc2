@@ -285,10 +285,8 @@ bool operator > (big a, big b) {
 	return 0;
 }
 signed main() {
-	big a;
-	int b;
-	a.get();
-	cin >> b;
-	a %= b;
+	big a, b;
+	a.get(), b.get();
+	a *= b;
 	a.put();
 }
