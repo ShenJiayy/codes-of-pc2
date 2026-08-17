@@ -17,7 +17,7 @@ signed main() {
     for (int i = 1; i <= n; i ++) {
         q.clear();
         for (int j = 1; j <= m; j ++) {
-            while (!q.empty() && q.front() < j - r + 1)
+            while (!q.empty() && q.front() < j - s + 1)
                 q.pop_front();
             while (!q.empty() && a[i][q.back()] < a[i][j])
                 q.pop_back();
@@ -29,13 +29,13 @@ signed main() {
     for (int j = s; j <= m; j ++) {
         q.clear();
         for (int i = 1; i <= n; i ++) {
-            while (!q.empty() && q.front() < j - r + 1)
+            while (!q.empty() && q.front() < i - r + 1)
                 q.pop_front();
-            while (!q.empty() && ar[i][q.back()] < ar[i][j])
+            while (!q.empty() && ar[q.back()][j] < ar[i][j])
                 q.pop_back();
-            q.push_back(j);
+            q.push_back(i);
             if (i >= r)
-                ac[i][j] = ar[i][q.front()];
+                ac[i][j] = ar[q.front()][j];
         }
     }
     for (int i = r; i <= n; i ++) {
