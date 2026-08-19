@@ -7,28 +7,28 @@ bool a[N + 5][N + 5], vis[N + 5][N + 5][2];
 int ans;
 void dfs(int x, int y) {
     int num = 1;
-    if (vis[x][y][0] == 1) {
+    if (vis[x][y][0] == 0) {
         int x1 = x, y1 = y;
         bool flg = 1;
-        while (x1 <= n && y1 > 0 && flg) {
+        while (x1 < n && y1 > 1 && flg) {
             x1 ++, y1 --;
             if (!a[x1][y1]) {
                 flg = 0;
-                break;
+                continue;
             }
             for (int i = x1 - 1; i >= x; i --)
                 if (a[i][y1]) {
                     flg = 0;
                     for (int j = i + 1; j < x1; j ++)
-                        vis[j][x1 + y1 - j][0] = 0;
+                        vis[j][x + y - j][0] = 0;
                     break;
                 }
             for (int j = y1 + 1; j <= y; j ++)
                 if (a[x1][j]) {
                     flg = 0;
                     for (int i = j - 1; i > y1; i --)
-                        vis[x1 + y1 - i][i][0] = 0;
-                    break;
+                        vis[x + y - i][i][0] = 0;
+                    continue;
                 }
             if (!flg)
                 break;
@@ -38,33 +38,33 @@ void dfs(int x, int y) {
     }
     ans = max(ans, num);
     num = 1;
-    if (vis[x][y][0] == 1) {
+    if (vis[x][y][1] == 0) {
         int x1 = x, y1 = y;
         bool flg = 1;
-        while (x1 <= n && y1 <= m && flg) {
+        while (x1 < n && y1 < m && flg) {
             x1 ++, y1 ++;
             if (!a[x1][y1]) {
                 flg = 0;
-                break;
+                continue;
             }
             for (int i = x1 - 1; i >= x; i --)
                 if (a[i][y1]) {
                     flg = 0;
                     for (int j = i + 1; j < x1; j ++)
-                        vis[j][x1 + y1 - j][0] = 0;
+                        vis[j][j + y - x][1] = 0;
                     break;
                 }
             for (int j = y1 - 1; j >= y; j --)
                 if (a[x1][j]) {
                     flg = 0;
                     for (int i = j + 1; i < y1; i ++)
-                        vis[x1 + y1 - i][i][0] = 0;
-                    break;
+                        vis[i + x - y][i][1] = 0;
+                    continue;
                 }
             if (!flg)
                 break;
             num ++;
-            vis[x1][y1][0] = 1;
+            vis[x1][y1][1] = 1;
         }
     }
     ans = max(ans, num);
