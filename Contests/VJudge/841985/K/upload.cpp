@@ -78,5 +78,6 @@ signed main() {
         for (int j = 1; j <= m; j ++)
             if (a[i][j])
                 dfs(i, j);
+    cout << ans;
     return 0;
 }
