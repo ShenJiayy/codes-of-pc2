@@ -1,0 +1,53 @@
+#include<bits/stdc++.h>
+using namespace std;
+const int N=100005;
+vector<pair<int,int>>g[N];
+vector<int>d(N+1,INT_MAX);
+bool vis[N];
+void dj(int s,int n)
+{
+    d[s]=0;
+    priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>> q;
+    q.push({0,s});
+    while(!q.empty())
+    {
+        pair<int,int>t_pair=q.top();
+        q.pop();
+        int cu=t_pair.first;
+        int u=t_pair.second;
+        if(vis[u])continue;
+        vis[u]=1;
+        int sz=g[u].size();
+        for(int i=0;i<sz;i++)
+        {
+            int v=g[u][i].first;
+            int c=g[u][i].second;
+            if(d[v]>d[u]+c)
+            {
+                d[v]=d[u]+c;
+                if(!vis[v])q.push({d[v],v});
+            }
+        }
+    }
+    return;
+}
+
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    int n,m,s;
+    cin>>n>>m>>s;
+    for(int i=0;i<m;++i)
+    {
+        int a,b,c;
+        cin>>a>>b>>c;
+        g[a].push_back({b,c});
+    }
+    dj(s,n);
+    for(int i=1;i<=n;++i)
+    {
+        cout<<d[i]<<" ";
+    }
+    return 0;
+}

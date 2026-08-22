@@ -16,10 +16,10 @@ signed main() {
 	for (int stat = 1; stat < (1 << m); stat ++) {
 		int l = 0;
 		for (int j = 1; j <= m; j ++)
-			if (stat | (1 << j - 1) == stat)
+			if ((stat | (1 << j - 1)) == stat)
 				l += box[j];
 		for (int j = 1; j <= m; j ++)
-			if (stat | (1 << j - 1) == stat)
+			if ((stat | (1 << j - 1)) == stat)
 				dp[stat] = min(dp[stat], dp[stat ^ (1 << j - 1)] + box[j] - s[l][j] + s[l - box[j]][j]);
 	}
 	cout << dp[(1 << m) - 1];

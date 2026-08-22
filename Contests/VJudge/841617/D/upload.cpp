@@ -22,7 +22,7 @@ signed main() {
 			dp[i][j][0][0] = m - a[i].p;
 	int ans = 0;
 	for (int len = 1; len <= n; len ++)
-		for (int l = 1, r = len; l <= n + 1; l ++, r ++)
+		for (int l = 1, r = len + 1; l <= n + 1 && r <= 2 * n + 1; l ++, r ++)
 			for (int i = 1; i <= len; i ++) {
 				dp[l][r][i][0] = min(dp[l][r][i][0], dp[l + 1][r][i][0] + a[l + 1].p - a[l].p);
 				dp[l][r][i][0] = min(dp[l][r][i][0], dp[l + 1][r][i][1] + a[r].p - a[l].p);
